@@ -1,5 +1,7 @@
 <?php
 
+require_once '../backEnd/DBconnect.php';
+
 if(empty($_POST['formUser']) || empty($_POST['formPass']) || empty($_POST['formEmail'])) {
     echo "eita";
 
@@ -10,7 +12,7 @@ if(empty($_POST['formUser']) || empty($_POST['formPass']) || empty($_POST['formE
     $formUser = $_POST['formUser'];
     $formPass = $_POST['formPass'];
     $formEmail = $_POST['formEmail'];
-    echo "cadastro feito com sucesso";
+    
 
 }
 
