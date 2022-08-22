@@ -27,6 +27,11 @@ if(empty($_POST['formUser']) || empty($_POST['formPass']) || empty($_POST['formE
     $insrt->bindParam(':userCart', $userCartName, PDO::PARAM_STR);
     $insrt->execute();
 
+    $sql = "CREATE TABLE $userCartName (
+    produtoId INT NOT NULL PRIMARY KEY,
+    FOREIGN KEY (`produtoId`) REFERENCES produtos(`produtoId`)
+    )";
+    $conn->exec($sql);
 }
 
 ?>
