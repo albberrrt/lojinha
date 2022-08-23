@@ -32,6 +32,8 @@ if(empty($_POST['formUser']) || empty($_POST['formPass']) || empty($_POST['formE
     FOREIGN KEY (`produtoId`) REFERENCES produtos(`produtoId`)
     )";
     $conn->exec($sql);
+
+    header("Location: ../frontEnd/home.php");
 }
 
 ?>
