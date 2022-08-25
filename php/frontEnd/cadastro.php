@@ -22,7 +22,7 @@
             <form action="../backEnd/saveCadastro.php" method="POST">
                 <div class="input-div">
                     <input type="text" id="inputName" class="inputLogin" name="formUser" autocomplete="off" placeholder=" ">
-                    <label for="inputName" class="placeholder-input">Email ou nome de usuário</label>
+                    <label for="inputName" class="placeholder-input">Nome de usuário</label>
                 </div>
                 <div class="input-div">
                     <input type="email" id="inputEmail" class="inputLogin" name="formEmail" autocomplete="off" placeholder=" ">

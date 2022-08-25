@@ -1,0 +1,33 @@
+main{
+    width: 100%;
+    height: 100%;
+}
+
+section{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 2%;
+}
+
+.img-div{
+    margin: 0 5%;
+    transition: all 200ms ease-in-out;
+}
+.img-div:hover{
+    cursor: pointer;
+    transform: scale(1.05);
+    color: rgb(0, 136, 255);
+}
+
+.img-div h1{
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    margin-top: 1rem;
+}
+
+.img-div-2{
+    height: 500px;
+    overflow: hidden;
+}

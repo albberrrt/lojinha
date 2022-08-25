@@ -1,6 +1,5 @@
 <?php
 session_start();
-echo $_SESSION['user_Name'];
 require_once '../backEnd/selectData.php';
 
 ?>
@@ -14,6 +13,7 @@ require_once '../backEnd/selectData.php';
 
     <link rel="stylesheet" href="../../css/mainStyle.css" media="screen" type="text/css">
     <link rel="stylesheet" href="../../css/consultaStyle.css" media="screen" type="text/css">
+    <link rel="stylesheet" href="../../css/headerStyle.css" media="screen" type="text/css">
 
     <title>Consulta</title>
 
@@ -41,6 +41,7 @@ require_once '../backEnd/selectData.php';
 
     <main>
     <?php if (isset($_SESSION['user_Name']) && isset($_SESSION['user_Email'])){ ?>
+        <?php if ($_SESSION['isDev'] == 1){ ?>
         <section>
             <h1>Usuários cadastrados</h1>
             <table cellspacing="0" cellpadding="0">
@@ -62,6 +63,11 @@ require_once '../backEnd/selectData.php';
                 </tbody>
             </table>
         </section>
+        <?php } else { ?>
+            <section style="text-align: center;">
+            <h1>Você não pode acessar esta área.</h1>
+            </section>
+            <?php } ?>
     <?php }else{ ?>
         <section style="text-align: center;">
             <h1>Registre-se para ver os usuários cadastrados.</h1>

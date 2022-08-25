@@ -31,7 +31,7 @@ if(empty($_POST['formUser']) || empty($_POST['formPass']) || empty($_POST['formE
     $insrt->execute();
 
     $_SESSION['user_Email'] = $formEmail;
-    $_SESSION['user_Name'] = $formName;
+    $_SESSION['user_Name'] = $formUser;
     $_SESSION['user_Cart'] = $userCartName;
     $_SESSION['user_ProfileImg'] = $profileImg;
     $_SESSION['isDev'] = $isDev; 
