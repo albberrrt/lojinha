@@ -7,7 +7,8 @@ CREATE TABLE users (
     userEmail VARCHAR(255) NOT NULL,
     userPassword VARCHAR(255) NOT NULL,
     userCart VARCHAR(255) NOT NULL,
-    userImg VARCHAR(255) NOT NULL
+    userImg VARCHAR(255) NOT NULL,
+    dev BOOLEAN NOT NULL
     );
 
 CREATE TABLE produtos (

@@ -1,4 +1,6 @@
 <?php
+
+session_start();
 require_once '../backEnd/DBconnect.php';
 
 if(empty($_POST['formUser']) || empty($_POST['formPass'])){
@@ -23,16 +25,17 @@ if(empty($_POST['formUser']) || empty($_POST['formPass'])){
         $user_Password = $user['userPassword'];
         $user_ProfileImg = $user['userImg'];
         $user_Cart = $user['userCart'];
+        $user_isDev = $user['dev'];
         
         if($formUser === $user_Email or $formUser === $user_Name) {
             if (password_verify($formPass, $user['userPassword'])) {
-                $_SESSION['user_Id'] = $user_Id;
                 $_SESSION['user_Email'] = $user_Email;
                 $_SESSION['user_Name'] = $user_Name;
                 $_SESSION['user_Cart'] = $user_Cart;
                 $_SESSION['user_ProfileImg'] = $user_ProfileImg;
+                $_SESSION['isDev'] = $user_isDev;
                 
-                header("Location: ../frontEnd/home.php");
+                header("Location: ../frontEnd/consulta.php");
                 
             } else {
                 header("Location: ../frontEnd/login.php?error=Incorrect_data&email=$formUser");

@@ -1,5 +1,5 @@
 <?php
-    require_once './DBconfig.php';
+    require_once '../backEnd/DBconfig.php';
 
     try {
         $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET CHARACTER SET UTF8"));
