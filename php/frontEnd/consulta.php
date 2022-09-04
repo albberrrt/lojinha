@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../backEnd/selectData.php';
+require_once '../backEnd/selectUsers.php';
 
 ?>
 
@@ -14,6 +14,7 @@ require_once '../backEnd/selectData.php';
     <link rel="stylesheet" href="../../css/mainStyle.css" media="screen" type="text/css">
     <link rel="stylesheet" href="../../css/consultaStyle.css" media="screen" type="text/css">
     <link rel="stylesheet" href="../../css/headerStyle.css" media="screen" type="text/css">
+    <link rel="stylesheet" href="../../css/tableStyle.css" media="screen" type="text/css">
 
     <title>Consulta</title>
 
@@ -24,6 +25,12 @@ require_once '../backEnd/selectData.php';
         <h1>Bigode<span>Shop</span></h1>
         <?php if (isset($_SESSION['user_Name']) && isset($_SESSION['user_Email'])){ ?>
         <nav>
+        <?php if ($_SESSION['isDev'] == 1){ ?>
+
+        <a href="../frontEnd/produtos.php">Produtos</a>
+        <div class="divider-vertical"></div>
+
+        <?php }; ?>
             <a href="../frontEnd/devs.php">Devs</a>
             <div class="divider-vertical"></div>
             <a href="../backEnd/logout.php">Sair</a>

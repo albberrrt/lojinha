@@ -15,21 +15,21 @@
 <body>
     <header>
         <a href="../frontEnd/consulta.php"><h1>Bigode<span>Shop</span></h1></a>
-        <h2>SUA CONTA PARA O ESTILO BIGODE</h2>
+        <h2>TORNE-SE UM MEBRO BIGODE</h2>
     </header>
     <main>
         <section>
             <form action="../backEnd/saveCadastro.php" method="POST">
                 <div class="input-div">
-                    <input type="text" id="inputName" class="inputLogin" name="formUser" autocomplete="off" placeholder=" ">
+                    <input type="text" id="inputName" class="inputClass" name="formUser" autocomplete="off" placeholder=" ">
                     <label for="inputName" class="placeholder-input">Nome de usuário</label>
                 </div>
                 <div class="input-div">
-                    <input type="email" id="inputEmail" class="inputLogin" name="formEmail" autocomplete="off" placeholder=" ">
+                    <input type="email" id="inputEmail" class="inputClass" name="formEmail" autocomplete="off" placeholder=" ">
                     <label for="inputEmail" class="placeholder-input">Email</label>
                 </div>
                 <div class="input-div">
-                    <input type="password" id="inputPass" class="inputLogin" name="formPass" autocomplete="off" placeholder=" ">
+                    <input type="password" id="inputPass" class="inputClass" name="formPass" autocomplete="off" placeholder=" ">
                     <label for="inputPass" class="placeholder-input">Senha</label>
                 </div>
                 <div class="info-div">

@@ -8,7 +8,7 @@
 .input-div:first-child {
   margin-top: 1.8rem;
 }
-.inputLogin {
+.inputClass {
   height: 2.3rem;
   width: 100%;
   padding: 1rem 1.5rem 0 1.5rem;
@@ -38,18 +38,18 @@
 .placeholder-input:hover {
   cursor: text;
 }
-.inputLogin:focus {
+.inputClass:focus {
   background-color: rgb(255, 255, 255);
   border: 1px solid rgb(0, 136, 255);
 }
-.inputLogin:focus + .placeholder-input {
+.inputClass:focus + .placeholder-input {
   top: 8%;
   font-size: 11px;
 }
-.inputLogin:not(:placeholder-shown) + .placeholder-input {
+.inputClass:not(:placeholder-shown) + .placeholder-input {
   top: 8%;
   font-size: 11px;
 }
-.inputLogin:not(:placeholder-shown) {
+.inputClass:not(:placeholder-shown) {
   border: 1px solid rgb(0, 136, 255);
 }

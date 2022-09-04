@@ -21,11 +21,11 @@
         <section>
             <form action="../backEnd/saveLogin.php" method="POST">
                 <div class="input-div">
-                    <input type="text" id="inputName" class="inputLogin" name="formUser" autocomplete="off" placeholder=" ">
+                    <input type="text" id="inputName" class="inputClass" name="formUser" autocomplete="off" placeholder=" ">
                     <label for="inputName" class="placeholder-input">Email ou nome de usuário</label>
                 </div>
                 <div class="input-div">
-                    <input type="password" id="inputPass" class="inputLogin" name="formPass" autocomplete="off" placeholder=" ">
+                    <input type="password" id="inputPass" class="inputClass" name="formPass" autocomplete="off" placeholder=" ">
                     <label for="inputPass" class="placeholder-input">Senha</label>
                 </div>
                 <div class="info-div">

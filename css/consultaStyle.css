@@ -1,4 +1,3 @@
-
 /* MAIN */
 
 main {
@@ -10,40 +9,8 @@ main {
 
 main section {
   margin-top: 10%;
-  width: 60%;
+  width: 70%;
 }
 section h1 {
   font-family: "Roboto", sans-serif;
-}
-
-table {
-  width: 100%;
-  font-family: "Roboto", sans-serif;
-  margin-top: 1.5rem;
-}
-table thead {
-  background-color: #f0f0f0;
-}
-th {
-  padding: 8px;
-  text-align: left;
-  padding: 0.7rem 1rem;
-}
-#first-tr {
-  background-color: #f0f0f0;
-  color: black;
-}
-td {
-  padding: 8px;
-  text-align: left;
-  border-bottom: 1px solid #f0f0f0;
-}
-tr {
-  color: #8d8d8d;
-  transition: all 100ms ease-in-out;
-}
-tr:hover {
-  background-color: #f0f0f0d2;
-  cursor: default;
-  color: black;
 }

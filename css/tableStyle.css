@@ -1,0 +1,48 @@
+table {
+  width: 100%;
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  margin-top: 1.5rem;
+}
+table thead {
+  background-color: #f0f0f0;
+  display: table-header-group;
+}
+th {
+  padding: 15px 8px;
+  text-align: left;
+}
+#first-tr {
+  background-color: #f0f0f0;
+  color: black;
+}
+td {
+  height: 2.7rem;
+  padding-left: 8px;
+  text-align: left;
+  border-bottom: 1px solid #f0f0f0;
+}
+tr {
+  color: #8d8d8d;
+  transition: all 100ms ease-in-out;
+}
+tr:hover {
+  background-color: #f8f8f8ea;
+  cursor: default;
+  color: black;
+}
+td a {
+  color: rgb(0, 136, 255);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 150ms ease-in-out;
+}
+td a:link {
+  text-decoration: none;
+}
+td a:visited {
+  text-decoration: none;
+}
+td a:hover {
+  color: black;
+}
