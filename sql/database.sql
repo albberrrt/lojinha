@@ -14,10 +14,11 @@ CREATE TABLE users (
 CREATE TABLE produtos (
     produtoId INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     produtoPrc FLOAT NOT NULL,
+    produtoPrcFinal FLOAT NOT NULL,
     produtoName VARCHAR(255) NOT NULL,
     produtoImg VARCHAR(255) NOT NULL,
     categoriaId INT NOT NULL,
-    produtoGen BOOLEAN NOT NULL,
+    produtoGen INT(4) NOT NULL,
     produtoVendas INT NOT NULL,
     discProduto INT,
     FOREIGN KEY (`categoriaId`) REFERENCES categorias(`categoriaId`)

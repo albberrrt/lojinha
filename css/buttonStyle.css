@@ -20,3 +20,32 @@
   cursor: pointer;
   background-color: rgb(0, 136, 255);
 }
+
+/* Link Button */
+
+.button-div {
+  position: relative;
+  margin-top: 1.7rem;
+  width: 90%;
+  display: flex;
+}
+.button-div-link {
+  justify-content: center;
+}
+.button-div a {
+  width: 50%;
+  height: 3.3rem;
+  background-color: rgb(0, 0, 0);
+  border: 0;
+  font-family: "Roboto", sans-serif;
+  font-size: 22px;
+  color: #ffffff;
+  font-weight: 500;
+  border-radius: 4px;
+  transition: all 200ms ease-in-out;
+  text-decoration: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
