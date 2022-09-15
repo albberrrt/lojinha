@@ -117,6 +117,60 @@ $stmtTable = $conn->query($sql);
             </section>
             <a class="backLink" href="../frontEnd/produtos.php"></a>
         <?php }} ?>
+
+        <?php if(isset($_GET['cadProd'])){ ?>
+        <?php if($_GET['cadProd'] == true){ ?>
+            <section class="boxSection">
+                <a href="../frontEnd/produtos.php" class="backButtonLink">
+                <div class="backButton">
+                <svg class="arrowSvg" id="Camada_1" data-name="Camada 1" xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 1084 1920" preserveAspectRatio="xMidYMid meet"><path d="M1003.6389,908.1541,143.3872,47.9025a67.7444,67.7444,0,0,0-95.805,0l0,0a67.7443,67.7443,0,0,0,0,95.8049L863.9373,960.0627,47.5821,1776.4178a67.7444,67.7444,0,0,0,0,95.805l0,0a67.7442,67.7442,0,0,0,95.805,0l816.3552-816.3551.2576.2577,43.6389-43.6389A73.7742,73.7742,0,0,0,1003.6389,908.1541Z"/></svg>
+                <div>Voltar</div>
+                </div>
+                </a>
+                <form action="../backEnd/cadastroProd.php" method="POST">
+                <h1 style="color: #272727">Adicionar novo produto</span></h1>
+                    <div class="input-div">
+                        <input type="text" id="inputProdName" class="inputClass" name="inputProdName" autocomplete="off" placeholder=" ">
+                        <label for="inputProdName" class="placeholder-input">Nome do produto</label>
+                    </div>
+                    <div class="input-div">
+                        <input type="text" id="inputProdPrice" class="inputClass" name="inputProdPrice" autocomplete="off" placeholder=" ">
+                        <label for="inputProdPrice" class="placeholder-input"> Preço</label>
+                    </div>
+                    <div class="input-div">
+                        <input type="text" id="inputProdDesc" class="inputClass" name="inputProdDesc" autocomplete="off" placeholder=" ">
+                        <label for="inputProdDesc" class="placeholder-input"> Desconto</label>
+                    </div>
+                    <div class="select-class">
+                    <h4 class="h4Select">Selecione a Categoria do produto:</h4>
+                        <div class="custom-select">
+                            <select class=" selectClass select01" name="selectCategoria" id="selectCategoriaId" title="selectCategoria">
+                                <option value="" selected disabled hidden>Selecione aqui</option>
+                                <?php foreach($categoria as $key => $value){ ?>
+                                    <option for="selectCategoria" value="<?php echo $value['categoriaId']; ?>"><?php echo $value['categoria'] ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="select-class">
+                    <h4 class="h4Select">Selecione o Gênero do produto:</h4>
+                        <div class="custom-select">
+                            <select class=" selectClass select01" name="selectGenre" id="selectGenreId" title="selectGenre">
+                                <option value="" selected disabled hidden>Selecione aqui</option>
+                                <option value="1">Feminino</option>
+                                <option value="2">Masculino</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="button-div">
+                    <button type="submit">Adicionar</button>
+                    </div>
+                </form>
+                
+            </section>
+            <a class="backLink" href="../frontEnd/produtos.php"></a>
+        <?php }} ?>
+
         <?php if(isset($_GET['confirmExclusion']) && isset($_GET['productId'])){ ?>
         <?php if($_GET['confirmExclusion'] == true){ ?>
 
@@ -172,6 +226,11 @@ $stmtTable = $conn->query($sql);
                     <?php endwhile; ?>
                 </tbody>
             </table>
+            <div class="new-data">
+                <a href="../frontEnd/produtos?cadProd=true">
+                    <h3>Novo produto...</h3>
+                </a>
+            </div>
         </section>
         <?php } else { ?>
             <section style="text-align: center;">
