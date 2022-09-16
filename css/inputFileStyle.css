@@ -1,0 +1,12 @@
+.input-file-class {
+  width: 90%;
+}
+
+.input-file-div {
+  width: 100%;
+  display: flex;
+}
+
+.input-file-div input {
+  width: 100%;
+}

@@ -38,5 +38,5 @@ CREATE TABLE profileImages (
 INSERT INTO `categorias` (`categoriaId`, `categoria`) VALUES (NULL, 'Camisa polo'), (NULL, 'Camiseta'), (NULL, 'Regata'), (NULL, 'Casaco'), (NULL, 'Moletom'), (NULL, 'Short'), (NULL, 'Camisa')
 
 /* Produtos */
-INSERT INTO `produtos` (`produtoId`, `produtoPrc`, `produtoName`, `produtoImg`, `categoriaId`, `produtoGen`, `produtoVendas`, `discProduto`) VALUES (NULL, '279.90', 'Camisa Grêmio Clássica', '../../img/produtoImg/camisa/masc/GremioClassica.webp', '7', '1', '0', '0');
-INSERT INTO `produtos` (`produtoId`, `produtoPrc`, `produtoName`, `produtoImg`, `categoriaId`, `produtoGen`, `produtoVendas`, `discProduto`) VALUES (NULL, '299.90', 'Camisa Grêmio Outubro Rosa 2021', '../../img/produtoImg/camisa/fem/GremioOutubroRosa.webp', '7', '2', '0', '0');
+INSERT INTO `produtos` (`produtoId`, `produtoPrc`, `produtoPrcFinal`, `produtoName`, `produtoImg`, `categoriaId`, `produtoGen`, `produtoVendas`, `discProduto`) VALUES (NULL, '279.90', '279.90', 'Camisa Grêmio Clássica', '../../img/produtoImg/camisa/masc/GremioClassica.webp', '7', '1', '0', '0');
+INSERT INTO `produtos` (`produtoId`, `produtoPrc`, `produtoPrcFinal`, `produtoName`, `produtoImg`, `categoriaId`, `produtoGen`, `produtoVendas`, `discProduto`) VALUES (NULL, '299.90', '279.90', 'Camisa Grêmio Outubro Rosa 2021', '../../img/produtoImg/camisa/fem/GremioOutubroRosa.webp', '7', '2', '0', '0');

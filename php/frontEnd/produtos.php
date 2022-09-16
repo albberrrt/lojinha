@@ -24,6 +24,7 @@ $stmtTable = $conn->query($sql);
     <link rel="stylesheet" href="../../css/inputStyle.css" media="screen" type="text/css">
     <link rel="stylesheet" href="../../css/selectStyle.css" media="screen" type="text/css">
     <link rel="stylesheet" href="../../css/buttonStyle.css" media="screen" type="text/css">
+    <link rel="stylesheet" href="../../css/inputFileStyle.css" media="screen" type="text/css">
 
     <title>produtos</title>
 </head>
@@ -78,7 +79,7 @@ $stmtTable = $conn->query($sql);
                     <h1 style="color: #272727">Atualizar produto <span>ID#<?php echo $_GET['productId']; ?></span></h1>
                     <div class="input-div">
                         <input type="text" id="inputProdName" class="inputClass" name="inputProdName" autocomplete="off" placeholder=" ">
-                        <label for="inputProdName" class="placeholder-input">Novo Nome de usuário</label>
+                        <label for="inputProdName" class="placeholder-input">Novo Nome do Produto</label>
                     </div>
                     <div class="input-div">
                         <input type="text" id="inputProdPrice" class="inputClass" name="inputProdPrice" autocomplete="off" placeholder=" ">
@@ -130,7 +131,7 @@ $stmtTable = $conn->query($sql);
                 <form action="../backEnd/cadastroProd.php" method="POST">
                 <h1 style="color: #272727">Adicionar novo produto</span></h1>
                     <div class="input-div">
-                        <input type="text" id="inputProdName" class="inputClass" name="inputProdName" autocomplete="off" placeholder=" ">
+                        <input type="text" id="inputProdName" class="inputClass" name="inputProdName" autocomplete="of" placeholder=" ">
                         <label for="inputProdName" class="placeholder-input">Nome do produto</label>
                     </div>
                     <div class="input-div">
@@ -151,6 +152,13 @@ $stmtTable = $conn->query($sql);
                                 <?php } ?>
                             </select>
                         </div>
+                    </div>
+                    <div class="input-file-class">
+                    <h4 class="h4Select">Selecione a Imagem do produto: </h4>
+                    <div class="input-file-div">
+                        <input type="file" id="inputProdImg" class="inputClass" name="inputProdImg" autocomplete="off">
+                        <label for="inputProdImg" class="placeholder-input"> Imagem </label>
+                    </div>
                     </div>
                     <div class="select-class">
                     <h4 class="h4Select">Selecione o Gênero do produto:</h4>
