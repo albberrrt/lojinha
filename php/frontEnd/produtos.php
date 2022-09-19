@@ -128,10 +128,10 @@ $stmtTable = $conn->query($sql);
                 <div>Voltar</div>
                 </div>
                 </a>
-                <form action="../backEnd/cadastroProd.php" method="POST">
+                <form action="../backEnd/cadastroProd.php" method="POST" enctype="multipart/form-data">
                 <h1 style="color: #272727">Adicionar novo produto</span></h1>
                     <div class="input-div">
-                        <input type="text" id="inputProdName" class="inputClass" name="inputProdName" autocomplete="of" placeholder=" ">
+                        <input type="text" id="inputProdName" class="inputClass" name="inputProdName" autocomplete="off" placeholder=" ">
                         <label for="inputProdName" class="placeholder-input">Nome do produto</label>
                     </div>
                     <div class="input-div">
@@ -153,17 +153,16 @@ $stmtTable = $conn->query($sql);
                             </select>
                         </div>
                     </div>
-                    <div class="input-file-class">
+                    <div class="input-file-class" id="input-file-div">
                     <h4 class="h4Select">Selecione a Imagem do produto: </h4>
                     <div class="input-file-div">
-                        <input type="file" id="inputProdImg" class="inputClass" name="inputProdImg" autocomplete="off">
-                        <label for="inputProdImg" class="placeholder-input"> Imagem </label>
+                        <input type="file" id="inputProdImg" class="inputClass-file" name="inputProdImg" autocomplete="off">
                     </div>
                     </div>
                     <div class="select-class">
                     <h4 class="h4Select">Selecione o Gênero do produto:</h4>
                         <div class="custom-select">
-                            <select class=" selectClass select01" name="selectGenre" id="selectGenreId" title="selectGenre">
+                            <select class=" selectClass select01" name="selectGenre" id="selectGenreId" title="selectGenre" >
                                 <option value="" selected disabled hidden>Selecione aqui</option>
                                 <option value="1">Feminino</option>
                                 <option value="2">Masculino</option>
@@ -255,5 +254,6 @@ $stmtTable = $conn->query($sql);
 <!-- JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript" src="../../js/select.js"></script>
+<script type="text/javascript" src="../../js/file-input.js"></script>
 </body>
 </html>

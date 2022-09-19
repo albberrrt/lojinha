@@ -49,19 +49,21 @@ td a:hover {
 
 .new-data {
   width: 100%;
-  background-color: #ddddddea;
-  height: 3rem;
+  background-color: #000000;
+  color: white;
+  height: 2.7rem;
+  border-radius: 2px;
 }
 
 .new-data a {
   width: 100%;
   height: 100%;
   text-decoration: none;
-  color: rgb(34, 34, 34);
+  color: rgb(255, 255, 255);
   font-family: "Roboto", sans-serif;
   display: flex;
   align-items: center;
-  transition: all 100ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 
 .new-data a h3 {
@@ -71,5 +73,5 @@ td a:hover {
 
 .new-data a:hover {
   color: white;
-  background-color: #8d8d8d;
+  background-color: rgb(0, 136, 255);
 }
