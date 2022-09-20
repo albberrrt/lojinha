@@ -30,6 +30,8 @@ $stmtTable = $conn->query($sql);
 </head>
 <body>
     
+    <!-- HEADER  -->
+
 <div class="header-bar"></div>  
     <header>
 
@@ -62,9 +64,17 @@ $stmtTable = $conn->query($sql);
         <?php } ?>
     </header>
 
+        <!-- MAIN -->
+
     <main>
+
+        <!-- JANELINHAS  -->
+
     <?php if (isset($_SESSION['user_Name']) && isset($_SESSION['user_Email'])){ ?>
         <?php if ($_SESSION['isDev'] == 1){ ?>
+
+        <!-- Alterar PRODUTO EXISTENTE ✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅ -->
+
         <?php if (isset($_GET['edit']) && isset($_GET['productId'])){ ?>
         <?php if ($_GET['edit'] == true){ ?>
 
@@ -75,8 +85,8 @@ $stmtTable = $conn->query($sql);
                 <div>Voltar</div>
                 </div>
                 </a>
-                <form action="../backEnd/saveEdit.php?productId=<?php echo $_GET['productId']; ?>" method="POST">
-                    <h1 style="color: #272727">Atualizar produto <span>ID#<?php echo $_GET['productId']; ?></span></h1>
+                <form action="../backEnd/saveEdit.php?productId=<?php echo $_GET['productId']; ?>" method="POST" enctype="multipart/form-data">
+                    <h1 style="color: #272727">Alterar produto <span>ID#<?php echo $_GET['productId']; ?></span></h1>
                     <div class="input-div">
                         <input type="text" id="inputProdName" class="inputClass" name="inputProdName" autocomplete="off" placeholder=" ">
                         <label for="inputProdName" class="placeholder-input">Novo Nome do Produto</label>
@@ -100,6 +110,12 @@ $stmtTable = $conn->query($sql);
                             </select>
                         </div>
                     </div>
+                    <div class="input-file-class" id="input-file-div">
+                    <h4 class="h4Select">Selecione a Nova Imagem do produto: </h4>
+                    <div class="input-file-div">
+                        <input type="file" id="inputProdImg" class="inputClass-file" name="inputProdImg" autocomplete="off">
+                    </div>
+                    </div>
                     <div class="select-class">
                     <h4 class="h4Select">Selecione o novo Gênero:</h4>
                         <div class="custom-select">
@@ -118,6 +134,8 @@ $stmtTable = $conn->query($sql);
             </section>
             <a class="backLink" href="../frontEnd/produtos.php"></a>
         <?php }} ?>
+
+        <!-- CADASTRAR NOVO PRODUTO 🆕🆕🆕🆕🆕🆕🆕🆕🆕🆕🆕🆕🆕🆕🆕 -->
 
         <?php if(isset($_GET['cadProd'])){ ?>
         <?php if($_GET['cadProd'] == true){ ?>
@@ -178,6 +196,8 @@ $stmtTable = $conn->query($sql);
             <a class="backLink" href="../frontEnd/produtos.php"></a>
         <?php }} ?>
 
+        <!-- CONFIRMAR EXCLUSÃO ❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗ -->
+
         <?php if(isset($_GET['confirmExclusion']) && isset($_GET['productId'])){ ?>
         <?php if($_GET['confirmExclusion'] == true){ ?>
 
@@ -198,6 +218,7 @@ $stmtTable = $conn->query($sql);
             <a class="backLink" href="../frontEnd/produtos.php"></a>
         <?php }} ?>
 
+        <!-- TABELA DE PRODUTOS CADSTRADOS 🆒🆒🆒🆒🆒🆒🆒🆒🆒🆒🆒🆒🆒🆒🆒 -->
 
         <section>
             <h1>Produtos Cadastrados</h1>

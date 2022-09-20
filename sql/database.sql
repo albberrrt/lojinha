@@ -17,6 +17,7 @@ CREATE TABLE produtos (
     produtoPrcFinal FLOAT NOT NULL,
     produtoName VARCHAR(255) NOT NULL,
     produtoImg VARCHAR(255) NOT NULL,
+    produtoImgFile VARCHAR(255) NOT NULL,
     categoriaId INT NOT NULL,
     produtoGen INT(4) NOT NULL,
     produtoVendas INT NOT NULL,
