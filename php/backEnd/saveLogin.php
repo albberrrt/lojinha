@@ -35,7 +35,7 @@ if(empty($_POST['formUser']) || empty($_POST['formPass'])){
                 $_SESSION['user_ProfileImg'] = $user_ProfileImg;
                 $_SESSION['isDev'] = $user_isDev;
                 
-                header("Location: ../frontEnd/consulta.php");
+                header("Location: ../frontEnd/home.php");
                 
             } else {
                 header("Location: ../frontEnd/login.php?error=Incorrect_data&email=$formUser");

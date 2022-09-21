@@ -21,7 +21,9 @@ CREATE TABLE produtos (
     categoriaId INT NOT NULL,
     produtoGen INT(4) NOT NULL,
     produtoVendas INT NOT NULL,
-    discProduto INT,
+    produtoAmount INT NOT NULL,
+    discProduto INT NOT NULL,
+    produtoState INT NOT NULL,
     FOREIGN KEY (`categoriaId`) REFERENCES categorias(`categoriaId`)
    );
 

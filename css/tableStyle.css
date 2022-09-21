@@ -9,7 +9,7 @@ table thead {
   display: table-header-group;
 }
 th {
-  padding: 15px 8px;
+  padding: 15px 10px;
   text-align: left;
 }
 #first-tr {
@@ -18,7 +18,8 @@ th {
 }
 td {
   height: 2.7rem;
-  padding-left: 8px;
+  min-width: 5rem;
+  padding-left: 10px;
   text-align: left;
   border-bottom: 1px solid #f0f0f0;
 }
@@ -45,6 +46,10 @@ td a:visited {
 }
 td a:hover {
   color: black;
+}
+.tdProdId {
+  color: #424242;
+  font-weight: 500;
 }
 
 .new-data {

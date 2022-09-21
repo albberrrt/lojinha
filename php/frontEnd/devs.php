@@ -23,8 +23,10 @@ session_start();
         <?php if (isset($_SESSION['user_Name']) && isset($_SESSION['user_Email'])){ ?>
 
         <nav>
+            <a href="../frontEnd/home.php">Home</a>
+            <div class="divider-vertical"></div> 
             <?php if ($_SESSION['isDev'] == 1){ ?>
-            <a href="../frontEnd/consulta.php">Consulta</a>
+            <a href="../frontEnd/usuarios.php">Usuários</a>
             <div class="divider-vertical"></div>
             <a href="../frontEnd/produtos.php">Produtos</a>
             <div class="divider-vertical"></div>
@@ -37,6 +39,8 @@ session_start();
         <?php } else { ?>
 
         <nav>
+            <a href="../frontEnd/home.php">Home</a>
+            <div class="divider-vertical"></div> 
             <a href="../frontEnd/cadastro.php">Cadastrar-se</a>
             <div class="divider-vertical"></div>
             <a href="../frontEnd/login.php">Entrar</a>

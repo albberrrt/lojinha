@@ -42,7 +42,7 @@ if(empty($_POST['formUser']) || empty($_POST['formPass']) || empty($_POST['formE
     )";
     $conn->exec($sql);
 
-    header("Location: ../frontEnd/consulta.php");
+    header("Location: ../frontEnd/home.php");
 }
 
 ?>

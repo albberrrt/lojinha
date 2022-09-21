@@ -10,4 +10,4 @@ unset($_SESSION['user_ProfileImg']);
 session_unset();
 session_destroy();
 
-header("Location: ../frontEnd/consulta.php");
+header("Location: ../frontEnd/home.php");

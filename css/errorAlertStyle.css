@@ -1,0 +1,43 @@
+.errorSection {
+  position: absolute;
+  width: 32%;
+  padding: 2rem 0 3rem 0;
+  z-index: 110;
+  border-radius: 4px;
+  top: -10%;
+}
+
+.errorSection form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.errorAlert {
+  background-color: #000000;
+  padding: 1rem 2rem;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  border: 1px double #e48900;
+}
+
+.errorAlert h1 {
+  font-size: 23px;
+  font-weight: 500;
+  margin-right: 2rem;
+  color: white;
+}
+.errorAlert h1 span {
+  font-weight: 600;
+  color: #e48900;
+}
+.errorAlert img {
+  cursor: pointer;
+  filter: invert(1);
+}
+
+.errorAlertDesactive {
+  display: none;
+}

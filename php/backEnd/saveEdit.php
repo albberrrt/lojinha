@@ -8,7 +8,7 @@ require_once '../backEnd/DBconnect.php';
 if(isset($_GET['productId'])){
     $productId = $_GET['productId'];
 
-    $sql = "SELECT produtoName, produtoPrc, discProduto, categoriaId, produtoGen, produtoImg, produtoImgFile FROM produtos WHERE produtoId = $productId";
+    $sql = "SELECT produtoName, produtoPrc, discProduto, produtoAmount, categoriaId, produtoGen, produtoImg, produtoImgFile, produtoState FROM produtos WHERE produtoId = $productId";
     $stmtProd = $conn->query($sql);
     $prodInfo = $stmtProd->fetch();
 
@@ -47,6 +47,16 @@ if(isset($_GET['productId'])){
         echo $newProdDesc . " não alterado <br></br>";
     }
 
+    // Estoque
+
+    if(!empty($_POST['inputProdAmount'])){
+        $newProdAmount = $_POST['inputProdAmount'];
+        echo $newProdAmount . " alterado <br></br>";
+    } else {
+        $newProdAmount = $prodInfo['produtoAmount'];
+        echo $newProdAmount . " não alterado <br></br>";
+    }
+
     // Categoria
 
     if(isset($_POST['selectCategoria'])){
@@ -55,6 +65,16 @@ if(isset($_GET['productId'])){
     } else {
         $newProdCategoria = $prodInfo['categoriaId'];
         echo $newProdCategoria . " não alterado <br></br>";
+    }
+
+    // Estado do produto
+
+    if($_POST['selectState'] !== ""){
+        $newProdState = $_POST['selectState'];
+        echo $newProdState . " alterado <br></br>";
+    } else {
+        $newProdState = $prodInfo['produtoState'];
+        echo $newProdState . " não alterado <br></br>";
     }
 
     // SELECT categoria
@@ -120,7 +140,8 @@ if(isset($_GET['productId'])){
         $target_file = $target_dir . $inptImg;
         $uploadOk = 1;
         $imgFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-        $inptImg = $productId . "produtoImg." . $imgFileType;
+        $fileName = str_replace( array( '|', ' ', ',', ';', '<', '>', '?', '.', ':', '/', '!', '@', '#', '(', ')', '$', '[', ']', '{', '}', '+', '-', '=' ), '', $newProdName);
+        $inptImg = $fileName . "produtoImg." . $imgFileType;
         $target_file = $target_dir . $inptImg;
         echo "target file: " . $target_file . "<br></br>";
 
@@ -132,17 +153,20 @@ if(isset($_GET['productId'])){
             } else {
                 echo "File is not a Image";
                 $uploadOk = 0;
+                header("Location: ../frontEnd/produtos.php?edit=true&productId=$productId&error=101");
             }
         }
 
         if(file_exists($target_file)){
             echo "File já existe" . "<br></br>";
             $uploadOk = 0;
+            header("Location: ../frontEnd/produtos.php?edit=true&productId=$productId&error=101");
         }
 
         if($imgFileType != "jpg" && $imgFileType != "png" && $imgFileType != "jpeg" && $imgFileType != "webp"){
             echo "Sorry but only jpg, png, jpeg and webp are allowed" . "<br></br>";
             $uploadOk = 0;
+            header("Location: ../frontEnd/produtos.php?edit=true&productId=$productId&error=101");
         }
     } else {
 
@@ -165,7 +189,7 @@ if(isset($_GET['productId'])){
                 echo "The File" . htmlspecialchars(basename($_FILES['inputProdImg']['name'])) . " has been uploaded";
             }
         }
-            $stmt = "UPDATE `produtos` SET `produtoName` = :produtoName, `produtoPrc` = :produtoPrc, `discProduto` = :discProduto, `categoriaId` = :categoriaId, `produtoGen` = :produtoGen, `produtoImg` = :produtoImg, `produtoImgFile` = :produtoImgFile WHERE `produtos`.`produtoId` = :produtoId;
+            $stmt = "UPDATE `produtos` SET `produtoName` = :produtoName, `produtoPrc` = :produtoPrc, `discProduto` = :discProduto, `produtoAmount` = :produtoAmount, `categoriaId` = :categoriaId, `produtoGen` = :produtoGen, `produtoImg` = :produtoImg, `produtoImgFile` = :produtoImgFile, `produtoState` = :produtoState WHERE `produtos`.`produtoId` = :produtoId;
             UPDATE `produtos` SET `produtoPrcFinal` = (produtoPrc - (produtoPrc * (discProduto / 100))) WHERE produtoId = :produtoId;";
             $insrt = $conn->prepare($stmt);
             $insrt->bindParam(':produtoName', $newProdName, PDO::PARAM_STR);
@@ -173,8 +197,10 @@ if(isset($_GET['productId'])){
             $insrt->bindParam(':produtoImg', $target_file, PDO::PARAM_STR);
             $insrt->bindParam(':produtoImgFile', $inptImg, PDO::PARAM_STR);
             $insrt->bindParam(':discProduto', $newProdDesc, PDO::PARAM_INT);
+            $insrt->bindParam(':produtoAmount', $newProdAmount, PDO::PARAM_INT);
             $insrt->bindParam(':categoriaId', $newProdCategoria, PDO::PARAM_INT);
             $insrt->bindParam(':produtoGen', $newProdGenre, PDO::PARAM_INT);
+            $insrt->bindParam(':produtoState', $newProdState, PDO::PARAM_INT);
             $insrt->bindParam(':produtoId', $productId, PDO::PARAM_INT);
             $insrt->execute();
 

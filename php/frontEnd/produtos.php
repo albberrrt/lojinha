@@ -3,7 +3,7 @@ session_start();
 require_once '../backEnd/DBconnect.php';
 require_once '../backEnd/categoriaQuery.php';
 
-$sql = "SELECT p.produtoId, p.produtoPrc, p.produtoPrcFinal, p.produtoName, p.produtoVendas, p.discProduto, p.produtoGen, c.categoria 
+$sql = "SELECT p.produtoId, p.produtoPrc, p.produtoPrcFinal, p.produtoName, p.produtoVendas, p.produtoAmount, p.discProduto, p.produtoGen, p.produtoState, c.categoria 
 FROM produtos p INNER JOIN categorias c 
 ON p.categoriaId = c.categoriaId";
 $stmtTable = $conn->query($sql);
@@ -25,6 +25,8 @@ $stmtTable = $conn->query($sql);
     <link rel="stylesheet" href="../../css/selectStyle.css" media="screen" type="text/css">
     <link rel="stylesheet" href="../../css/buttonStyle.css" media="screen" type="text/css">
     <link rel="stylesheet" href="../../css/inputFileStyle.css" media="screen" type="text/css">
+    <link rel="stylesheet" href="../../css/errorAlertStyle.css" media="screen" type="text/css">
+    <link rel="stylesheet" href="../../css/boxStyle.css" media="screen" type="text/css">
 
     <title>produtos</title>
 </head>
@@ -39,9 +41,11 @@ $stmtTable = $conn->query($sql);
         <?php if (isset($_SESSION['user_Name']) && isset($_SESSION['user_Email'])){ ?>
 
         <nav>
+            <a href="../frontEnd/home.php">Home</a>
+            <div class="divider-vertical"></div> 
             <?php if ($_SESSION['isDev'] == 1){ ?>
 
-            <a href="../frontEnd/consulta.php">Consulta</a>
+            <a href="../frontEnd/usuarios.php">Usuários</a>
             <div class="divider-vertical"></div>
 
             <?php }; ?>
@@ -54,7 +58,8 @@ $stmtTable = $conn->query($sql);
         <?php } else { ?>
 
         <nav>
-            
+            <a href="../frontEnd/home.php">Home</a>
+            <div class="divider-vertical"></div> 
             <a href="../frontEnd/devs.php">Devs</a>
             <div class="divider-vertical"></div>
             <a href="../frontEnd/cadastro.php">Cadastrar-se</a>
@@ -92,12 +97,16 @@ $stmtTable = $conn->query($sql);
                         <label for="inputProdName" class="placeholder-input">Novo Nome do Produto</label>
                     </div>
                     <div class="input-div">
-                        <input type="text" id="inputProdPrice" class="inputClass" name="inputProdPrice" autocomplete="off" placeholder=" ">
+                        <input type="number" id="inputProdPrice" class="inputClass" name="inputProdPrice" autocomplete="off" placeholder=" " step=".01">
                         <label for="inputProdPrice" class="placeholder-input"> Novo Preço</label>
                     </div>
                     <div class="input-div">
-                        <input type="text" id="inputProdDesc" class="inputClass" name="inputProdDesc" autocomplete="off" placeholder=" ">
+                        <input type="number" id="inputProdDesc" class="inputClass" name="inputProdDesc" autocomplete="off" placeholder=" ">
                         <label for="inputProdDesc" class="placeholder-input"> Novo Desconto</label>
+                    </div>
+                    <div class="input-div">
+                        <input type="number" id="inputProdAmount" class="inputClass" name="inputProdAmount" autocomplete="off" placeholder=" ">
+                        <label for="inputProdAmount" class="placeholder-input"> Novo Estoque</label>
                     </div>
                     <div class="select-class">
                     <h4 class="h4Select">Selecione a nova Categoria:</h4>
@@ -123,6 +132,16 @@ $stmtTable = $conn->query($sql);
                                 <option value="" selected disabled hidden>Selecione aqui</option>
                                 <option value="1">Feminino</option>
                                 <option value="2">Masculino</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="select-class">
+                    <h4 class="h4Select">Selecione o novo Estado do produto:</h4>
+                        <div class="custom-select">
+                            <select class=" selectClass select01" name="selectState" id="selectStateId" title="selectGenre">
+                                <option value="" selected disabled hidden>Selecione aqui</option>
+                                <option value="1">Ativado</option>
+                                <option value="0">Desativado</option>
                             </select>
                         </div>
                     </div>
@@ -160,6 +179,10 @@ $stmtTable = $conn->query($sql);
                         <input type="text" id="inputProdDesc" class="inputClass" name="inputProdDesc" autocomplete="off" placeholder=" ">
                         <label for="inputProdDesc" class="placeholder-input"> Desconto</label>
                     </div>
+                    <div class="input-div">
+                        <input type="text" id="inputProdAmount" class="inputClass" name="inputProdAmount" autocomplete="off" placeholder=" ">
+                        <label for="inputProdAmount" class="placeholder-input"> Estoque</label>
+                    </div>
                     <div class="select-class">
                     <h4 class="h4Select">Selecione a Categoria do produto:</h4>
                         <div class="custom-select">
@@ -187,6 +210,16 @@ $stmtTable = $conn->query($sql);
                             </select>
                         </div>
                     </div>
+                    <div class="select-class">
+                    <h4 class="h4Select">Selecione o novo Estado do produto:</h4>
+                        <div class="custom-select">
+                            <select class=" selectClass select01" name="selectState" id="selectStateId" title="selectGenre">
+                                <option value="" selected disabled hidden>Selecione aqui</option>
+                                <option value="1">Ativado</option>
+                                <option value="0">Desativado</option>
+                            </select>
+                        </div>
+                    </div>
                     <div class="button-div">
                     <button type="submit">Adicionar</button>
                     </div>
@@ -195,6 +228,30 @@ $stmtTable = $conn->query($sql);
             </section>
             <a class="backLink" href="../frontEnd/produtos.php"></a>
         <?php }} ?>
+        
+        <!-- ERROR 💥💢💥💥💢💥💥💢💥💥💢💥💥💢💥 -->
+
+        <?php if(isset($_GET['error'])){ ?>
+
+            <section class="errorSection" id="errorSecId">
+                <form>
+                <?php if($_GET['error'] == 101){ ?>
+                    <div class="errorAlert" id="errorDiv">
+                        <h1><span>Arquivo inválido:</span> Selecione uma Imagem válida</h1>
+                        <img src="../../img/buttons/blackXButton.png" width="18" id="closeAlertButton">
+                    </div>
+                <?php } ?>
+            
+                <?php if($_GET['error'] == 202){ ?>
+                    <div class="errorAlert" id="errorDiv">
+                        <h1><span>Formulário Inválido: </span>Preencha o formulário corretamente</h1>
+                        <img src="../../img/buttons/blackXButton.png" width="18" id="closeAlertButton">
+                    </div>
+                <?php } ?>
+                </form>
+            </section>
+
+        <?php } ?>
 
         <!-- CONFIRMAR EXCLUSÃO ❗❗❗❗❗❗❗❗❗❗❗❗❗❗❗ -->
 
@@ -229,10 +286,12 @@ $stmtTable = $conn->query($sql);
                         <th>Nome</th>
                         <th>Preço</th>
                         <th>Preço Final</th>
+                        <th>Desconto</th>
                         <th>Categoria</th>
                         <th>Gênero</th>
-                        <th>Total de Vendas</th>
-                        <th>Desconto</th>
+                        <th>Estoque</th>
+                        <th>Vendas</th>
+                        <th>Estado</th>
                         <th>Editar</th>
                         <th>Excluir</th>
                     </tr>
@@ -240,14 +299,16 @@ $stmtTable = $conn->query($sql);
                 <tbody>
                     <?php while($row = $stmtTable->fetch(PDO::FETCH_ASSOC)) : ?>
                         <tr>
-                            <td><?php echo htmlspecialchars($row['produtoId']); ?></td>
+                            <td class="tdProdId"><?php echo htmlspecialchars($row['produtoId']); ?></td>
                             <td><?php echo htmlspecialchars($row['produtoName']); ?></td>
                             <td>R$ <?php echo htmlspecialchars($row['produtoPrc']); ?></td>
                             <td>R$ <?php echo htmlspecialchars($row['produtoPrcFinal']); ?></td>
+                            <td><?php echo htmlspecialchars($row['discProduto']); ?>%</td>
                             <td><?php echo htmlspecialchars($row['categoria']); ?></td>
                             <td><?php if($row['produtoGen'] == 2){ echo "Masculino";} else if($row['produtoGen'] == 1){ echo "Feminino";} ?></td>
+                            <td><?php echo htmlspecialchars($row['produtoAmount']); ?></td>
                             <td><?php echo htmlspecialchars($row['produtoVendas']); ?></td>
-                            <td><?php echo htmlspecialchars($row['discProduto']); ?>%</td>
+                            <td><?php if($row['produtoState'] == 1){ echo "Ativado";} else if($row['produtoState'] == 0){ echo "Desativado";} ?></td>
                             <td><a href="../frontEnd/produtos.php?edit=true&productId=<?php echo $row['produtoId']; ?>"><div style="height:100%; display: flex; align-items: center;">Editar</div></a></td>
                             <td><a href="../frontEnd/produtos.php?confirmExclusion=true&productId=<?php echo $row['produtoId']; ?>"><div style="height:100%; display: flex; align-items: center;">Excluir</div></a></td>
                         </tr>
@@ -267,7 +328,7 @@ $stmtTable = $conn->query($sql);
             <?php } ?>
     <?php }else{ ?>
         <section style="text-align: center;">
-            <h1>Registre-se para ver os usuários cadastrados.</h1>
+            <h1>Registre-se para ver os produtos cadastrados.</h1>
         </section>
     <?php } ?>
     </main>
@@ -276,5 +337,6 @@ $stmtTable = $conn->query($sql);
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript" src="../../js/select.js"></script>
 <script type="text/javascript" src="../../js/file-input.js"></script>
+<script type="text/javascript" src="../../js/errorAlert.js"></script>
 </body>
 </html>
