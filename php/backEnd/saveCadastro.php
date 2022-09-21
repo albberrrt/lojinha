@@ -15,6 +15,7 @@ if(empty($_POST['formUser']) || empty($_POST['formPass']) || empty($_POST['formE
     $formEmail = $_POST['formEmail'];
     $profileImg = "../../img/defaultProfile.png";
     $userCartName = str_replace( array( '|', ' ', ',', ';', '<', '>', '?', '.', ':', '/', '!', '@', '#', '(', ')', '$', '[', ']', '{', '}', '+', '-', '=' ), '', $formUser);
+    echo "CartName: " . $userCartName . "<br></br>";
     $isDev = 0;
     echo $userCartName;
 

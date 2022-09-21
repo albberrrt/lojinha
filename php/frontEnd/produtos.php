@@ -309,8 +309,8 @@ $stmtTable = $conn->query($sql);
                             <td><?php echo htmlspecialchars($row['produtoAmount']); ?></td>
                             <td><?php echo htmlspecialchars($row['produtoVendas']); ?></td>
                             <td><?php if($row['produtoState'] == 1){ echo "Ativado";} else if($row['produtoState'] == 0){ echo "Desativado";} ?></td>
-                            <td><a href="../frontEnd/produtos.php?edit=true&productId=<?php echo $row['produtoId']; ?>"><div style="height:100%; display: flex; align-items: center;">Editar</div></a></td>
-                            <td><a href="../frontEnd/produtos.php?confirmExclusion=true&productId=<?php echo $row['produtoId']; ?>"><div style="height:100%; display: flex; align-items: center;">Excluir</div></a></td>
+                            <td><a href="../frontEnd/produtos.php?edit=true&productId=<?php echo $row['produtoId']; ?>"><div>Editar</div></a></td>
+                            <td><a href="../frontEnd/produtos.php?confirmExclusion=true&productId=<?php echo $row['produtoId']; ?>"><div>Excluir</div></a></td>
                         </tr>
                     <?php endwhile; ?>
                 </tbody>

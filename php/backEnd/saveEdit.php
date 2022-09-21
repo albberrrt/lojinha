@@ -69,12 +69,12 @@ if(isset($_GET['productId'])){
 
     // Estado do produto
 
-    if($_POST['selectState'] !== ""){
-        $newProdState = $_POST['selectState'];
-        echo $newProdState . " alterado <br></br>";
-    } else {
+    if($_POST['selectState'] == ""){
         $newProdState = $prodInfo['produtoState'];
         echo $newProdState . " não alterado <br></br>";
+    } else {
+        $newProdState = $_POST['selectState'];
+        echo $newProdState . " alterado <br></br>";
     }
 
     // SELECT categoria

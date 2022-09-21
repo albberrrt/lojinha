@@ -1,5 +1,12 @@
 <?php
 session_start(); 
+require_once '../backEnd/DBconnect.php';
+
+    $sql = "SELECT categoriaId, categoria FROM categorias";
+    $stmtC = $conn->query($sql);
+    unset($sql);
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,6 +17,8 @@ session_start();
 
     <link rel="stylesheet" href="../../css/mainStyle.css" media="screen" type="text/css">
     <link rel="stylesheet" href="../../css/headerStyle.css" media="screen" type="text/css">
+    <link rel="stylesheet" href="../../css/inputStyle.css" media="screen" type="text/css">
+    <link rel="stylesheet" href="../../css/homeStyle.css" media="screen" type="text/css">
 
     <title>Home</title>
 </head>
@@ -42,8 +51,40 @@ session_start();
         </nav>
         <?php } ?>
     </header>
-    <main></main>
-    <footer></footer>
+    <div class="sub-header">
+        <div class="input-search-div">
+            <form action="../backEnd/searchProd.php" id="searchForm" method="POST">
+                <input type="text" class="searchInput" name="searchInput" id="searchInput" autocomplete="off" placeholder="Buscar">
+                <label for="searchInput" id="searchIcon"><img src="../../img/buttons/searchIcon.png" width="24" height="24" class="search-icon"></label>
+            </form>
+        </div>
+        <div class="sub-nav">
+            <a href="../frontEnd/profile.php"><img src="../../img/defaultProfile" width="45"></a>
+        </div>
+    </div>
+    <main>
+        <?php while($row = $stmtC->fetch(PDO::FETCH_ASSOC)){ ?>
+        <section class="produtoSection">
+            <h1><?php echo $row['categoria']?></h1>
+            <div class="produtosSec">
+                <?php 
+                    $catId = $row['categoriaId'];
+                    $sql = "SELECT produtoName, produtoPrc, produtoPrcFinal, produtoImg, discProduto FROM produtos WHERE categoriaId = $catId AND produtoState = 1";
+                    $stmtP = $conn->query($sql);
+                ?>
+                <?php while($rowP = $stmtP->fetch(PDO::FETCH_ASSOC)){ ?>
 
+                    <div class="produto-div">
+                        <img src=" <?php echo $rowP['produtoImg'] ?>">
+                        <div></div>
+                    </div>
+
+                <?php } ?>
+            </div>
+        </section>
+        <?php } ?>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </body>
 </html>

@@ -1,0 +1,13 @@
+.produtoSection {
+  display: flex;
+  width: 100%;
+}
+
+.produtosSec {
+  display: flex;
+  width: 100%;
+}
+
+.produto-div {
+  width: 5%;
+}
