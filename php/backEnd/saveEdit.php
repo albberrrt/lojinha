@@ -8,7 +8,7 @@ require_once '../backEnd/DBconnect.php';
 if(isset($_GET['productId'])){
     $productId = $_GET['productId'];
 
-    $sql = "SELECT produtoName, produtoPrc, discProduto, produtoAmount, categoriaId, produtoGen, produtoImg, produtoImgFile, produtoState FROM produtos WHERE produtoId = $productId";
+    $sql = "SELECT produtoName, produtoPrc, discProduto, produtoAmount, categoriaId, produtoGen, produtoImg, produtoImgFile, produtoState, produtoTags FROM produtos WHERE produtoId = $productId";
     $stmtProd = $conn->query($sql);
     $prodInfo = $stmtProd->fetch();
 
@@ -55,6 +55,16 @@ if(isset($_GET['productId'])){
     } else {
         $newProdAmount = $prodInfo['produtoAmount'];
         echo $newProdAmount . " não alterado <br></br>";
+    }
+
+    // Tags
+
+    if(!empty($_POST['inputProdTags'])){
+        $newProdTags = $_POST['inputProdTags'];
+        echo $newProdTags . " alterado <br></br>";
+    } else {
+        $newProdTags = $prodInfo['produtoTags'];
+        echo $newProdTags . " não alterado <br></br>";
     }
 
     // Categoria
@@ -189,10 +199,11 @@ if(isset($_GET['productId'])){
                 echo "The File" . htmlspecialchars(basename($_FILES['inputProdImg']['name'])) . " has been uploaded";
             }
         }
-            $stmt = "UPDATE `produtos` SET `produtoName` = :produtoName, `produtoPrc` = :produtoPrc, `discProduto` = :discProduto, `produtoAmount` = :produtoAmount, `categoriaId` = :categoriaId, `produtoGen` = :produtoGen, `produtoImg` = :produtoImg, `produtoImgFile` = :produtoImgFile, `produtoState` = :produtoState WHERE `produtos`.`produtoId` = :produtoId;
+            $stmt = "UPDATE `produtos` SET `produtoName` = :produtoName, `produtoPrc` = :produtoPrc, `discProduto` = :discProduto, `produtoAmount` = :produtoAmount, `categoriaId` = :categoriaId, `produtoGen` = :produtoGen, `produtoImg` = :produtoImg, `produtoImgFile` = :produtoImgFile, `produtoState` = :produtoState, `produtoTags` = :produtoTags WHERE `produtos`.`produtoId` = :produtoId;
             UPDATE `produtos` SET `produtoPrcFinal` = (produtoPrc - (produtoPrc * (discProduto / 100))) WHERE produtoId = :produtoId;";
             $insrt = $conn->prepare($stmt);
             $insrt->bindParam(':produtoName', $newProdName, PDO::PARAM_STR);
+            $insrt->bindParam(':produtoTags', $newProdTags, PDO::PARAM_STR);
             $insrt->bindParam(':produtoPrc', $newProdPrice, PDO::PARAM_STR);
             $insrt->bindParam(':produtoImg', $target_file, PDO::PARAM_STR);
             $insrt->bindParam(':produtoImgFile', $inptImg, PDO::PARAM_STR);

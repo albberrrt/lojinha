@@ -27,47 +27,54 @@ $stmtTable = $conn->query($sql);
     <link rel="stylesheet" href="../../css/inputFileStyle.css" media="screen" type="text/css">
     <link rel="stylesheet" href="../../css/errorAlertStyle.css" media="screen" type="text/css">
     <link rel="stylesheet" href="../../css/boxStyle.css" media="screen" type="text/css">
+    <link rel="stylesheet" href="../../css/footerStyle.css" media="screen" type="text/css">
 
     <title>produtos</title>
 </head>
+
+<?php if(isset($_GET['edit']) || isset($_GET['cadProd']) || isset($_GET['confirmExclusion'])){ ?>
+<body style="overflow-y: hidden;">
+<?php } else { ?>
 <body>
-    
+<?php } ?>
     <!-- HEADER  -->
 
-<div class="header-bar"></div>  
-    <header>
+    <div class="header-max">
+        <div class="header-bar"></div>  
+            <header>
 
-        <h1>Bigode<span>Shop</span></h1>
-        <?php if (isset($_SESSION['user_Name']) && isset($_SESSION['user_Email'])){ ?>
+                <h1>Bigode<span>Shop</span></h1>
+                <?php if (isset($_SESSION['user_Name']) && isset($_SESSION['user_Email'])){ ?>
 
-        <nav>
-            <a href="../frontEnd/home.php">Home</a>
-            <div class="divider-vertical"></div> 
-            <?php if ($_SESSION['isDev'] == 1){ ?>
+                <nav>
+                    <a href="../frontEnd/home.php?page=home">Home</a>
+                    <div class="divider-vertical"></div> 
+                    <?php if ($_SESSION['isDev'] == 1){ ?>
 
-            <a href="../frontEnd/usuarios.php">Usuários</a>
-            <div class="divider-vertical"></div>
+                    <a href="../frontEnd/usuarios.php">Usuários</a>
+                    <div class="divider-vertical"></div>
 
-            <?php }; ?>
-            <a href="../frontEnd/devs.php">Devs</a>
-            <div class="divider-vertical"></div>
-            <a href="../backEnd/logout.php">Sair</a>
+                    <?php }; ?>
+                    <a href="../frontEnd/devs.php">Devs</a>
+                    <div class="divider-vertical"></div>
+                    <a href="../backEnd/logout.php">Sair</a>
 
-        </nav>
+                </nav>
 
-        <?php } else { ?>
+                <?php } else { ?>
 
-        <nav>
-            <a href="../frontEnd/home.php">Home</a>
-            <div class="divider-vertical"></div> 
-            <a href="../frontEnd/devs.php">Devs</a>
-            <div class="divider-vertical"></div>
-            <a href="../frontEnd/cadastro.php">Cadastrar-se</a>
-            <div class="divider-vertical"></div>
-            <a href="../frontEnd/login.php">Entrar</a>
-        </nav>
-        <?php } ?>
-    </header>
+                <nav>
+                    <a href="../frontEnd/home.php?page=home">Home</a>
+                    <div class="divider-vertical"></div> 
+                    <a href="../frontEnd/devs.php">Devs</a>
+                    <div class="divider-vertical"></div>
+                    <a href="../frontEnd/cadastro.php">Cadastrar-se</a>
+                    <div class="divider-vertical"></div>
+                    <a href="../frontEnd/login.php">Entrar</a>
+                </nav>
+                <?php } ?>
+            </header>
+    </div>
 
         <!-- MAIN -->
 
@@ -107,6 +114,10 @@ $stmtTable = $conn->query($sql);
                     <div class="input-div">
                         <input type="number" id="inputProdAmount" class="inputClass" name="inputProdAmount" autocomplete="off" placeholder=" ">
                         <label for="inputProdAmount" class="placeholder-input"> Novo Estoque</label>
+                    </div>
+                    <div class="input-div">
+                        <input type="text" id="inputProdTags" class="inputClass" name="inputProdTags" autocomplete="off" placeholder=" ">
+                        <label for="inputProdTags" class="placeholder-input"> Novas Tags</label>
                     </div>
                     <div class="select-class">
                     <h4 class="h4Select">Selecione a nova Categoria:</h4>
@@ -182,6 +193,10 @@ $stmtTable = $conn->query($sql);
                     <div class="input-div">
                         <input type="text" id="inputProdAmount" class="inputClass" name="inputProdAmount" autocomplete="off" placeholder=" ">
                         <label for="inputProdAmount" class="placeholder-input"> Estoque</label>
+                    </div>
+                    <div class="input-div">
+                        <input type="text" id="inputProdTags" class="inputClass" name="inputProdTags" autocomplete="off" placeholder=" ">
+                        <label for="inputProdTags" class="placeholder-input"> Novas Tags</label>
                     </div>
                     <div class="select-class">
                     <h4 class="h4Select">Selecione a Categoria do produto:</h4>
@@ -332,6 +347,7 @@ $stmtTable = $conn->query($sql);
         </section>
     <?php } ?>
     </main>
+    <footer><h1>Bigode<span>Shop</span></h1></footer>
 
 <!-- JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

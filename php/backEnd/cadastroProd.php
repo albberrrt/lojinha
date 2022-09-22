@@ -43,6 +43,15 @@ $errorOk = 0;
         echo $inptAmount . "<br></br>";
     }
 
+    // TAGS
+    if(empty($_POST['inputProdTags'])){
+        echo "Tags tá vazio" . "<br></br>";
+        $errorOk = 1;
+    } else {
+        $inptTags = $_POST['inputProdTags'];
+        echo $inptTags . "<br></br>";
+    }
+
     // CATEGORIA
     if(!isset($_POST['selectCategoria'])){
         echo "Categoria tá vazio" . "<br></br>";
@@ -159,9 +168,10 @@ $errorOk = 0;
     
             // INSERT DATA
     
-            $stmt = "INSERT INTO `produtos` (`produtoId`, `produtoPrc`, `produtoPrcFinal`, `produtoName`, `produtoImg`, `produtoImgFile`, `categoriaId`, `produtoGen`, `produtoVendas`, `discProduto`, `produtoAmount`, `produtoState`) VALUES (null, :produtoPrc, :produtoPrcFinal, :produtoName, :produtoImg, :produtoImgFile, :categoriaId, :produtoGen, :produtoVendas, :discProduto, :produtoAmount, :produtoState)";
+            $stmt = "INSERT INTO `produtos` (`produtoId`, `produtoPrc`, `produtoPrcFinal`, `produtoName`, `produtoImg`, `produtoImgFile`, `categoriaId`, `produtoGen`, `produtoVendas`, `discProduto`, `produtoAmount`, `produtoTags`, `produtoState`) VALUES (null, :produtoPrc, :produtoPrcFinal, :produtoName, :produtoImg, :produtoImgFile, :categoriaId, :produtoGen, :produtoVendas, :discProduto, :produtoAmount, :produtoTags, :produtoState)";
             $insrt = $conn->prepare($stmt);
             $insrt->bindParam(':produtoName', $inptName, PDO::PARAM_STR);
+            $insrt->bindParam(':produtoTags', $inptTags, PDO::PARAM_STR);
             $insrt->bindParam(':produtoPrc', $inptPrice, PDO::PARAM_STR);
             $insrt->bindParam(':produtoPrcFinal', $prcFinal, PDO::PARAM_STR);
             $insrt->bindParam(':produtoImg', $target_file, PDO::PARAM_STR);

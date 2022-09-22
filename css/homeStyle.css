@@ -1,13 +1,135 @@
+body {
+  background-color: #f7f7f7;
+}
+main {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: #f7f7f7;
+}
+.sections-class {
+  width: 80%;
+  margin-top: 4%;
+}
+
 .produtoSection {
   display: flex;
+  flex-direction: column;
   width: 100%;
+  margin-bottom: 4%;
+}
+.produtoSection h1 {
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  margin-bottom: 2%;
 }
 
 .produtosSec {
   display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
+  position: relative;
 }
 
 .produto-div {
-  width: 5%;
+  width: 240px;
+  height: 372px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 1rem 1rem 1rem;
+  transition: all 200ms ease-in-out;
+  background: linear-gradient(to bottom, rgb(255, 255, 255), #ffffff00);
+  position: relative;
+}
+.produto-div:hover {
+  background: rgb(236, 236, 236);
+  cursor: pointer;
+}
+.last-produto-div {
+  background: rgba(0, 136, 255, 0.61);
+  color: white;
+  font-size: 30px;
+  text-align: center;
+  overflow: hidden;
+}
+.last-produto-div h3 {
+  z-index: 120;
+}
+.last-produto-div img {
+  position: absolute;
+  transform: scale(1.9);
+  filter: blur(7px);
+}
+.last-produto-div:hover {
+  background: rgb(105, 147, 184);
+  color: white;
+  font-size: 28px;
+}
+
+.desconto-div {
+  background-color: #000000;
+  color: #ffffff;
+  position: absolute;
+  right: 0;
+  top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 4rem;
+  height: 2rem;
+  border-radius: 2px;
+}
+.desconto-div h3 {
+  font-size: 17px;
+  font-weight: 400;
+}
+
+.produto-div img {
+  width: 80%;
+  mix-blend-mode: multiply;
+}
+.produto-div h4 {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+}
+.produto-div h4:first-child {
+  text-align: center;
+}
+
+.prices-class {
+  text-align: center;
+}
+.produto-div h3 {
+  font-family: "Roboto", sans-serif;
+}
+.prcUnderline {
+  text-decoration: line-through;
+  color: #a5a5a5;
+}
+.prcFinal {
+  color: rgb(0, 136, 255);
+  font-size: 22px;
+}
+
+.goToPrevSlide {
+  position: absolute;
+  left: -2rem;
+  transform: rotate(180deg);
+}
+.goToNextSlide {
+  position: absolute;
+  right: -1.6rem;
+}
+.arrow {
+  background: url(../img/buttons/arrow.png);
+  text-indent: -9999em;
+  position: absolute;
+  cursor: pointer;
+  width: 48px;
+  height: 48px;
+  z-index: 100;
 }

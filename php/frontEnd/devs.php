@@ -23,7 +23,7 @@ session_start();
         <?php if (isset($_SESSION['user_Name']) && isset($_SESSION['user_Email'])){ ?>
 
         <nav>
-            <a href="../frontEnd/home.php">Home</a>
+            <a href="../frontEnd/home.php?page=home">Home</a>
             <div class="divider-vertical"></div> 
             <?php if ($_SESSION['isDev'] == 1){ ?>
             <a href="../frontEnd/usuarios.php">Usuários</a>

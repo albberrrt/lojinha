@@ -18,6 +18,7 @@ require_once '../backEnd/selectUsers.php';
     <link rel="stylesheet" href="../../css/boxStyle.css" media="screen" type="text/css">
     <link rel="stylesheet" href="../../css/buttonStyle.css" media="screen" type="text/css">
     <link rel="stylesheet" href="../../css/inputStyle.css" media="screen" type="text/css">
+    <link rel="stylesheet" href="../../css/footerStyle.css" media="screen" type="text/css">
 
     <title>Consulta</title>
 
@@ -28,7 +29,7 @@ require_once '../backEnd/selectUsers.php';
         <h1>Bigode<span>Shop</span></h1>
         <?php if (isset($_SESSION['user_Name']) && isset($_SESSION['user_Email'])){ ?>
         <nav>
-            <a href="../frontEnd/home.php">Home</a>
+            <a href="../frontEnd/home.php?page=home">Home</a>
             <div class="divider-vertical"></div> 
         <?php if ($_SESSION['isDev'] == 1){ ?>
 
@@ -42,7 +43,7 @@ require_once '../backEnd/selectUsers.php';
         </nav>
         <?php } else { ?>
         <nav>
-            <a href="../frontEnd/home.php">Home</a>
+            <a href="../frontEnd/home.php?page=home">Home</a>
             <div class="divider-vertical"></div> 
             <a href="../frontEnd/devs.php">Devs</a>
             <div class="divider-vertical"></div>
@@ -117,6 +118,7 @@ require_once '../backEnd/selectUsers.php';
         </section>
     <?php } ?>
     </main>
+    <footer><h1>Bigode<span>Shop</span></h1></footer>
 
 </body>
 </html>

@@ -1,0 +1,21 @@
+footer {
+  width: 100%;
+  padding: 1rem 0;
+  background-color: rgb(0, 0, 0);
+  margin-top: 10%;
+  display: flex;
+}
+
+footer h1 {
+  color: rgb(255, 255, 255);
+  font-family: "Roboto", sans-serif;
+  margin-left: 2rem;
+  font-size: 20px;
+}
+footer span {
+  color: rgb(0, 136, 255);
+}
+
+footer span span {
+  font-size: 12px;
+}
