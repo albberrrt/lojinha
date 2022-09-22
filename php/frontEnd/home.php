@@ -32,11 +32,12 @@ require_once '../backEnd/DBconnect.php';
             <?php if (isset($_SESSION['user_Name']) && isset($_SESSION['user_Email'])){ ?>
             <nav>
             <?php if ($_SESSION['isDev'] == 1){ ?>
-
-            <a href="../frontEnd/produtos.php">Produtos</a>
-            <div class="divider-vertical"></div>
-            <a href="../frontEnd/usuarios.php">Usuários</a>
-            <div class="divider-vertical"></div>
+                <a href="../frontEnd/home.php?page=home">Home</a>
+                <div class="divider-vertical"></div> 
+                <a href="../frontEnd/produtos.php">Produtos</a>
+                <div class="divider-vertical"></div>
+                <a href="../frontEnd/usuarios.php">Usuários</a>
+                <div class="divider-vertical"></div>
 
             <?php }; ?>
                 <a href="../frontEnd/devs.php">Devs</a>
@@ -45,6 +46,8 @@ require_once '../backEnd/DBconnect.php';
             </nav>
             <?php } else { ?>
             <nav>
+                <a href="../frontEnd/home.php?page=home">Home</a>
+                <div class="divider-vertical"></div> 
                 <a href="../frontEnd/devs.php">Devs</a>
                 <div class="divider-vertical"></div>
                 <a href="../frontEnd/cadastro.php">Cadastrar-se</a>
@@ -120,7 +123,7 @@ require_once '../backEnd/DBconnect.php';
                                         <a>
                                             <div class="produto-div last-produto-div">
                                                 <h3>VER COLEÇÃO COMPLETA</h3>
-                                                <img src="../../img/produtoImg/Camiseta/masculino/CamisetaGrêmioRetrô2001MasculinaprodutoImg.jpg">
+                                                <img src="../../img/examples/SM-Camisa_Masc_Heritage_Retro_Frente.jpg">
                                             </div>
                                         </a>
                                     </li>
@@ -133,7 +136,7 @@ require_once '../backEnd/DBconnect.php';
                     <?php } else if($curPage == "search"){
                             if(isset($_GET['search'])){
                                 $search = "%" . $_GET['search'] . "%";
-                                $sql = "SELECT produtoName, produtoPrc, produtoPrcFinal, produtoImg, discProduto, categoriaId FROM produtos WHERE LOWER(produtoName) LIKE :search AND produtoState = 1;";
+                                $sql = "SELECT produtoName, produtoPrc, produtoPrcFinal, produtoImg, discProduto, categoriaId FROM produtos WHERE LOWER(produtoName) LIKE :search OR LOWER(produtoTags) LIKE :search AND produtoState = 1;";
                                 $stmt = $conn->prepare($sql);
                                 $stmt->bindParam(':search', $search, PDO::PARAM_STR);
                                 $stmt->execute();
@@ -142,12 +145,44 @@ require_once '../backEnd/DBconnect.php';
                             }?>
                         
                             <?php if($stmt->rowCount() === 0){ ?>
-                            
-                                <h1>NENHUM RESULTADO ENCONTRADO PARA <?php echo $_GET['search'] ?></h1>
-
+                                <div class="search-header">
+                                    <h1>NENHUM RESULTADO ENCONTRADO PARA <?php echo $_GET['search'] ?></h1>
+                                </div>
                             <?php } else { ?>
                             
-                                <h1>RESULTADOS ENCONTRADOS</h1>
+                                <div class="search-header">
+                                    <h1>RESULTADOS ENCONTRADOS PARA <?php echo $_GET['search'] ?>:</h1>
+                                </div>
+                                <section class="search-result-sec">
+                                    
+                                    <?php while($rowP = $stmt->fetch(PDO::FETCH_ASSOC)){ ?>
+                                        
+                                        <a>
+                                            <div class="produto-div">
+                                            <?php if($rowP['discProduto'] > 0) { ?>
+                                                <div class="desconto-div">
+                                                    <h3>- <?php echo $rowP['discProduto'] ?>%</h3>
+                                                </div>
+                                            <?php } ?>
+                                            <img src="<?php echo $rowP['produtoImg'] ?>">
+                                            <div>
+                                                <h4><?php echo $rowP['produtoName'] ?></h4>
+                                            </div>
+                                            <div class="prices-class">
+                                                <br>
+                                                <?php if($rowP['discProduto'] == 0){ ?>
+                                                    <h3 class="prcFinal">R$ <?php echo $rowP['produtoPrcFinal'] ?></h3>
+                                                <?php } else if($rowP['discProduto'] > 0) { ?>
+                                                    <h3 class="prcUnderline">R$ <?php echo $rowP['produtoPrc'] ?></h3>
+                                                    <h3 class="prcFinal">R$ <?php echo $rowP['produtoPrcFinal'] ?></h3>
+                                                <?php } ?>
+                                            </div>
+                                            </div>
+                                        </a>
+
+                                    <?php } ?>
+                            
+                                </section>
 
                             <?php } ?>
                     <?php } else if($curPage == "categoria"){ ?>
@@ -161,7 +196,6 @@ require_once '../backEnd/DBconnect.php';
         </div>
 
     </main>
-    <footer><h1>Bigode<span>Shop</span></h1></footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="../../js/lightslider.js"></script>

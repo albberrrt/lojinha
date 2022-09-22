@@ -3,7 +3,7 @@ session_start();
 require_once '../backEnd/DBconnect.php';
 require_once '../backEnd/categoriaQuery.php';
 
-$sql = "SELECT p.produtoId, p.produtoPrc, p.produtoPrcFinal, p.produtoName, p.produtoVendas, p.produtoAmount, p.discProduto, p.produtoGen, p.produtoState, c.categoria 
+$sql = "SELECT p.produtoId, p.produtoPrc, p.produtoPrcFinal, p.produtoName, p.produtoVendas, p.produtoAmount, p.discProduto, p.produtoGen, p.produtoState, p.produtoTags, p.categoriaId, c.categoria 
 FROM produtos p INNER JOIN categorias c 
 ON p.categoriaId = c.categoriaId";
 $stmtTable = $conn->query($sql);
@@ -100,30 +100,30 @@ $stmtTable = $conn->query($sql);
                 <form action="../backEnd/saveEdit.php?productId=<?php echo $_GET['productId']; ?>" method="POST" enctype="multipart/form-data">
                     <h1 style="color: #272727">Alterar produto <span>ID#<?php echo $_GET['productId']; ?></span></h1>
                     <div class="input-div">
-                        <input type="text" id="inputProdName" class="inputClass" name="inputProdName" autocomplete="off" placeholder=" ">
+                        <input type="text" id="inputProdName" class="inputClass" name="inputProdName" autocomplete="off" placeholder=" " value="<?php echo $_GET['productName'] ?>">
                         <label for="inputProdName" class="placeholder-input">Novo Nome do Produto</label>
                     </div>
                     <div class="input-div">
-                        <input type="number" id="inputProdPrice" class="inputClass" name="inputProdPrice" autocomplete="off" placeholder=" " step=".01">
+                        <input type="number" id="inputProdPrice" class="inputClass" name="inputProdPrice" autocomplete="off" placeholder=" " step=".01" value="<?php echo $_GET['productPrc'] ?>">
                         <label for="inputProdPrice" class="placeholder-input"> Novo Preço</label>
                     </div>
                     <div class="input-div">
-                        <input type="number" id="inputProdDesc" class="inputClass" name="inputProdDesc" autocomplete="off" placeholder=" ">
+                        <input type="number" id="inputProdDesc" class="inputClass" name="inputProdDesc" autocomplete="off" placeholder=" " value="<?php echo $_GET['productDisc'] ?>">
                         <label for="inputProdDesc" class="placeholder-input"> Novo Desconto</label>
                     </div>
                     <div class="input-div">
-                        <input type="number" id="inputProdAmount" class="inputClass" name="inputProdAmount" autocomplete="off" placeholder=" ">
+                        <input type="number" id="inputProdAmount" class="inputClass" name="inputProdAmount" autocomplete="off" placeholder=" " value="<?php echo $_GET['productAmount'] ?>">
                         <label for="inputProdAmount" class="placeholder-input"> Novo Estoque</label>
                     </div>
                     <div class="input-div">
-                        <input type="text" id="inputProdTags" class="inputClass" name="inputProdTags" autocomplete="off" placeholder=" ">
+                        <input type="text" id="inputProdTags" class="inputClass" name="inputProdTags" autocomplete="off" placeholder=" " value="<?php echo $_GET['productTags'] ?>">
                         <label for="inputProdTags" class="placeholder-input"> Novas Tags</label>
                     </div>
                     <div class="select-class">
                     <h4 class="h4Select">Selecione a nova Categoria:</h4>
-                        <div class="custom-select">
+                        <div class="custom-select custom-selectedF">
                             <select class=" selectClass select01" name="selectCategoria" id="selectCategoriaId" title="selectCategoria">
-                                <option value="" selected disabled hidden>Selecione aqui</option>
+                                <option value="" selected disabled hidden><?php echo $_GET['productCat'] ?></option>
                                 <?php foreach($categoria as $key => $value){ ?>
                                     <option for="selectCategoria" value="<?php echo $value['categoriaId']; ?>"><?php echo $value['categoria'] ?></option>
                                 <?php } ?>
@@ -131,16 +131,16 @@ $stmtTable = $conn->query($sql);
                         </div>
                     </div>
                     <div class="input-file-class" id="input-file-div">
-                    <h4 class="h4Select">Selecione a Nova Imagem do produto: </h4>
+                    <h4 class="h4Select">Selecione a Nova Imagem do produto: (Deixe em branco para não alterar)</h4>
                     <div class="input-file-div">
                         <input type="file" id="inputProdImg" class="inputClass-file" name="inputProdImg" autocomplete="off">
                     </div>
                     </div>
                     <div class="select-class">
                     <h4 class="h4Select">Selecione o novo Gênero:</h4>
-                        <div class="custom-select">
+                        <div class="custom-select custom-selectedF">
                             <select class=" selectClass select01" name="selectGenre" id="selectGenreId" title="selectGenre">
-                                <option value="" selected disabled hidden>Selecione aqui</option>
+                                <option value="" selected disabled hidden><?php if($_GET['productGenre'] == 2){ echo "Masculino";} else if($_GET['productGenre'] == 1){ echo "Feminino";} ?></option>
                                 <option value="1">Feminino</option>
                                 <option value="2">Masculino</option>
                             </select>
@@ -148,9 +148,9 @@ $stmtTable = $conn->query($sql);
                     </div>
                     <div class="select-class">
                     <h4 class="h4Select">Selecione o novo Estado do produto:</h4>
-                        <div class="custom-select">
+                        <div class="custom-select custom-selectedF">
                             <select class=" selectClass select01" name="selectState" id="selectStateId" title="selectGenre">
-                                <option value="" selected disabled hidden>Selecione aqui</option>
+                                <option value="" selected disabled hidden><?php if($_GET['productState'] == 1){ echo "Ativado";} else if($_GET['productState'] == 0){ echo "Desativado";} ?></option>
                                 <option value="1">Ativado</option>
                                 <option value="0">Desativado</option>
                             </select>
@@ -324,7 +324,7 @@ $stmtTable = $conn->query($sql);
                             <td><?php echo htmlspecialchars($row['produtoAmount']); ?></td>
                             <td><?php echo htmlspecialchars($row['produtoVendas']); ?></td>
                             <td><?php if($row['produtoState'] == 1){ echo "Ativado";} else if($row['produtoState'] == 0){ echo "Desativado";} ?></td>
-                            <td><a href="../frontEnd/produtos.php?edit=true&productId=<?php echo $row['produtoId']; ?>"><div>Editar</div></a></td>
+                            <td><a href="../frontEnd/produtos.php?edit=true&productId=<?php echo $row['produtoId']; ?>&productName=<?php echo $row['produtoName'] ?>&productPrc=<?php echo $row['produtoPrc'] ?>&productDisc=<?php echo $row['discProduto'] ?>&productGenre=<?php echo $row['produtoGen'] ?>&productCat=<?php echo $row['categoria'] ?>&productCatId=<?php echo $row['categoriaId'] ?>&productAmount=<?php echo $row['produtoAmount'] ?>&productTags=<?php echo $row['produtoTags'] ?>&productState=<?php echo $row['produtoState'] ?>"><div>Editar</div></a></td>
                             <td><a href="../frontEnd/produtos.php?confirmExclusion=true&productId=<?php echo $row['produtoId']; ?>"><div>Excluir</div></a></td>
                         </tr>
                     <?php endwhile; ?>
