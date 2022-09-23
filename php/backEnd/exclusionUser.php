@@ -26,7 +26,7 @@ if(isset($_GET['exclusion']) && isset($_GET['userId'])){
 
         
 
-        // header("Location: ../frontEnd/usuarios.php");
+        header("Location: ../frontEnd/usuarios.php");
     } else {
         header("Location: ../frontEnd/error.php?error=707");
     }

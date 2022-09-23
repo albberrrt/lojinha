@@ -62,7 +62,7 @@ require_once '../backEnd/DBconnect.php';
 
             <div class="input-search-div">
                 <form action="../backEnd/searchProd.php" id="searchForm" method="POST">
-                    <input type="text" class="searchInput" name="searchInput" id="searchInput" autocomplete="off" placeholder="Buscar">
+                    <input type="text" class="searchInput" name="searchInput" id="searchInput" autocomplete="off" placeholder="Buscar" value="<?php echo @$_GET['search'] ?>">
                     <label for="searchInput" id="searchIcon"><img src="../../img/buttons/searchIcon.png" width="24" height="24" class="search-icon"></label>
                 </form>
             </div>
@@ -156,7 +156,7 @@ require_once '../backEnd/DBconnect.php';
                                 <section class="search-result-sec">
                                     
                                     <?php while($rowP = $stmt->fetch(PDO::FETCH_ASSOC)){ ?>
-                                        
+    
                                         <a>
                                             <div class="produto-div">
                                             <?php if($rowP['discProduto'] > 0) { ?>
