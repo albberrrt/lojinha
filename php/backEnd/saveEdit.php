@@ -22,6 +22,7 @@ if(isset($_GET['productId'])){
     if(!empty($_POST['inputProdName'])){
         $newProdName = $_POST['inputProdName'];
         echo $newProdName . " alterado <br></br>";
+        $changeImgName = 1;
     } else {
         $newProdName = $prodInfo['produtoName'];
         echo $newProdName . " não alterado <br></br>";
@@ -72,6 +73,8 @@ if(isset($_GET['productId'])){
     if(isset($_POST['selectCategoria'])){
         $newProdCategoria = $_POST['selectCategoria'];
         echo $newProdCategoria . " alterado <br></br>";
+        $changeImgCat = 1;
+        
     } else {
         $newProdCategoria = $prodInfo['categoriaId'];
         echo $newProdCategoria . " não alterado <br></br>";
@@ -101,6 +104,7 @@ if(isset($_GET['productId'])){
     if(isset($_POST['selectGenre'])){
         $newProdGenre = $_POST['selectGenre'];
         echo $newProdGenre . " alterado <br></br>";
+        $changeImgGenre = 1;
     } else {
         $newProdGenre = $prodInfo['produtoGen'];
         echo $newProdGenre . " não alterado <br></br>";
@@ -120,7 +124,9 @@ if(isset($_GET['productId'])){
 
     if($_FILES['inputProdImg']['size'] == 0){
         echo "Imagem tá vazia" . "<br></br>";
-        $inptImg = $prodInfo['produtoImgFile'];
+        $imgFileType = ".jpg";
+        $fileName = str_replace( array( '|', ' ', ',', ';', '<', '>', '?', '.', ':', '/', '!', '@', '#', '(', ')', '$', '[', ']', '{', '}', '+', '-', '=' ), '', $newProdName);
+        $inptImg = $fileName . "produtoImg." . $imgFileType;
         echo "inptImg: " . $inptImg . "<br></br>";
         $imgAltered = 0;
     } else {
@@ -186,7 +192,13 @@ if(isset($_GET['productId'])){
         echo "Alteração será feito no DB; Upload da Imagem não será feito // uploadOk = ". $uploadOk . "<br></br>";
         $target_dir = "../../img/produtoImg/" . $categoria['categoria'] . "/" . $genre . "/";
         $target_file = $target_dir . $inptImg;
+        $old_target_file = $prodInfo['produtoImg'];
+        echo $old_target_file;
         echo "target file: " . $target_file . "<br></br>";
+        if($changeImgGenre == 1 || $changeImgCat == 1 || $changeImgName == 1){
+            rename($old_target_file, $target_file);
+        }
+
     }
 
     // Alterar no Banco de Dados
