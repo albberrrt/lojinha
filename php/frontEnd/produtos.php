@@ -100,23 +100,23 @@ $stmtTable = $conn->query($sql);
                 <form action="../backEnd/saveEdit.php?productId=<?php echo $_GET['productId']; ?>" method="POST" enctype="multipart/form-data">
                     <h1 style="color: #272727">Alterar produto <span>ID#<?php echo $_GET['productId']; ?></span></h1>
                     <div class="input-div">
-                        <input type="text" id="inputProdName" class="inputClass" name="inputProdName" autocomplete="off" placeholder=" " value="<?php echo $_GET['productName'] ?>">
+                        <input type="text" id="inputProdName" class="inputClass" name="inputProdName" autocomplete="off" placeholder=" " value="<?php echo @$_GET['productName'] ?>">
                         <label for="inputProdName" class="placeholder-input">Novo Nome do Produto</label>
                     </div>
                     <div class="input-div">
-                        <input type="number" id="inputProdPrice" class="inputClass" name="inputProdPrice" autocomplete="off" placeholder=" " step=".01" value="<?php echo $_GET['productPrc'] ?>">
+                        <input type="number" id="inputProdPrice" class="inputClass" name="inputProdPrice" autocomplete="off" placeholder=" " step=".01" value="<?php echo @$_GET['productPrc'] ?>">
                         <label for="inputProdPrice" class="placeholder-input"> Novo Preço</label>
                     </div>
                     <div class="input-div">
-                        <input type="number" id="inputProdDesc" class="inputClass" name="inputProdDesc" autocomplete="off" placeholder=" " value="<?php echo $_GET['productDisc'] ?>">
+                        <input type="number" id="inputProdDesc" class="inputClass" name="inputProdDesc" autocomplete="off" placeholder=" " value="<?php echo @$_GET['productDisc'] ?>">
                         <label for="inputProdDesc" class="placeholder-input"> Novo Desconto</label>
                     </div>
                     <div class="input-div">
-                        <input type="number" id="inputProdAmount" class="inputClass" name="inputProdAmount" autocomplete="off" placeholder=" " value="<?php echo $_GET['productAmount'] ?>">
+                        <input type="number" id="inputProdAmount" class="inputClass" name="inputProdAmount" autocomplete="off" placeholder=" " value="<?php echo @$_GET['productAmount'] ?>">
                         <label for="inputProdAmount" class="placeholder-input"> Novo Estoque</label>
                     </div>
                     <div class="input-div">
-                        <input type="text" id="inputProdTags" class="inputClass" name="inputProdTags" autocomplete="off" placeholder=" " value="<?php echo $_GET['productTags'] ?>">
+                        <input type="text" id="inputProdTags" class="inputClass" name="inputProdTags" autocomplete="off" placeholder=" " value="<?php echo @$_GET['productTags'] ?>">
                         <label for="inputProdTags" class="placeholder-input"> Novas Tags</label>
                     </div>
                     <div class="select-class">
@@ -125,7 +125,7 @@ $stmtTable = $conn->query($sql);
                             <select class=" selectClass select01" name="selectCategoria" id="selectCategoriaId" title="selectCategoria">
                                 <option value="" selected disabled hidden><?php echo $_GET['productCat'] ?></option>
                                 <?php foreach($categoria as $key => $value){ ?>
-                                    <option for="selectCategoria" value="<?php echo $value['categoriaId']; ?>"><?php echo $value['categoria'] ?></option>
+                                    <option for="selectCategoria" value="<?php echo $value['categoriaId']; ?>"><?php echo @$value['categoria'] ?></option>
                                 <?php } ?>
                             </select>
                         </div>
@@ -251,6 +251,13 @@ $stmtTable = $conn->query($sql);
             <section class="errorSection" id="errorSecId">
                 <form>
                 <?php if($_GET['error'] == 101){ ?>
+                    <div class="errorAlert" id="errorDiv">
+                        <h1><span>Arquivo inválido:</span> Selecione uma Imagem válida</h1>
+                        <img src="../../img/buttons/blackXButton.png" width="18" id="closeAlertButton">
+                    </div>
+                <?php } ?>
+
+                <?php if($_GET['error'] == 103){ ?>
                     <div class="errorAlert" id="errorDiv">
                         <h1><span>Arquivo inválido:</span> Selecione uma Imagem válida</h1>
                         <img src="../../img/buttons/blackXButton.png" width="18" id="closeAlertButton">

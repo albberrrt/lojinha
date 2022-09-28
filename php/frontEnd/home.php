@@ -5,6 +5,7 @@ require_once '../backEnd/DBconnect.php';
     $sql = "SELECT categoriaId, categoria FROM categorias";
     $stmtC = $conn->query($sql);
     unset($sql);
+    
 
 
 ?>
@@ -82,17 +83,21 @@ require_once '../backEnd/DBconnect.php';
                 ?>
                 <?php if($curPage == "home"){ ?>
                     <?php while($row = $stmtC->fetch(PDO::FETCH_ASSOC)){ ?>
+
+                    <?php 
+                        $catId = $row['categoriaId'];
+                        $sql = "SELECT produtoName, produtoPrc, produtoPrcFinal, produtoImg, discProduto FROM produtos WHERE categoriaId = $catId AND produtoState = 1";
+                        $stmtP = $conn->query($sql);
+                        unset($sql);
+                    ?>
+                    <?php if($stmtP->rowCount() >= 5){ ?>
+
                     <section class="produtoSection">
                         <h1><?php echo $row['categoria']?></h1>
                         <div class="produtosSec">
 
                             <ul class="cs-hidden content-slider">
-                                <?php 
-                                $catId = $row['categoriaId'];
-                                $sql = "SELECT produtoName, produtoPrc, produtoPrcFinal, produtoImg, discProduto FROM produtos WHERE categoriaId = $catId AND produtoState = 1";
-                                $stmtP = $conn->query($sql);
-                                unset($sql);
-                                ?>
+
                                 <?php while($rowP = $stmtP->fetch(PDO::FETCH_ASSOC)){ ?>
                                     <li>
                                         <a>
@@ -119,6 +124,7 @@ require_once '../backEnd/DBconnect.php';
                                         </a>
                                     </li>
                                 <?php } ?>
+
                                     <li>
                                         <a>
                                             <div class="produto-div last-produto-div">
@@ -132,7 +138,7 @@ require_once '../backEnd/DBconnect.php';
                             <div class="arrow goToNextSlide" id="goToNextSlide<?php echo $row['categoriaId'] - 1; ?>">Next</div>
                         </div>
                     </section>
-                    <?php } ?>
+                    <?php }} ?>
                     <?php } else if($curPage == "search"){
                             if(isset($_GET['search'])){
                                 $search = "%" . $_GET['search'] . "%";

@@ -39,15 +39,15 @@ CREATE TABLE profileImages (
     )
 
 /* Categorias */
-INSERT INTO `categorias` (`categoriaId`, `categoria`) VALUES (NULL, 'Camisa polo'), (NULL, 'Camiseta'), (NULL, 'Regata'), (NULL, 'Casaco'), (NULL, 'Moletom'), (NULL, 'Short'), (NULL, 'Camisa')
+INSERT INTO `categorias` (`categoriaId`, `categoria`) VALUES (NULL, 'Camisas polo'), (NULL, 'Camisetas'), (NULL, 'Regatas'), (NULL, 'Jaquetas'), (NULL, 'Moletons'), (NULL, 'Shorts'), (NULL, 'Camisas')
 
 /* Produtos */
 INSERT INTO `produtos` (`produtoId`, `produtoPrc`, `produtoPrcFinal`, `produtoName`, `produtoImg`, `produtoImgFile`, `categoriaId`, `produtoGen`, `produtoVendas`, `produtoAmount`, `discProduto`, `produtoTags`, `produtoState`) VALUES
-(38, 279.9, 209.925, 'Jaqueta Trilobal Marinha Masculina', '../../img/produtoImg/Jaquetas/masculino/JaquetaTrilobalMarinhaMasculinaprodutoImg.jpg', 'JaquetaTrilobalMarinhaMasculinaprodutoImg.jpg', 2, 2, 0, 45, 25, 'Jaquetas Marinhas Grêmio', 1),
-(37, 315.9, 315.9, 'Jaqueta Estampada c/ Forro Preta Masculina', '../../img/produtoImg/Jaquetas/masculino/JaquetaEstampadacForroPretaMasculinaprodutoImg.jpg', 'JaquetaEstampadacForroPretaMasculinaprodutoImg.jpg', 2, 2, 0, 45, 0, 'Jaquetas Estampadas Pretas Grêmio', 1),
-(36, 299.9, 299.9, 'Jaqueta Moletom Details Masculina', '../../img/produtoImg/Jaquetas/masculino/JaquetaMoletomDetailsMasculinaprodutoImg.jpg', 'JaquetaMoletomDetailsMasculinaprodutoImg.jpg', 2, 2, 0, 45, 0, 'Jaquetas Preta Pretas Grêmio', 1),
-(35, 289.9, 289.9, 'Jaqueta Bomber Preta Grêmio Masculina', '../../img/produtoImg/Jaquetas/masculino/JaquetaBomberPretaGrêmioMasculinaprodutoImg.jpg', 'JaquetaBomberPretaGrêmioMasculinaprodutoImg.jpg', 2, 2, 0, 42, 0, 'Jaquetas Pretas ', 1),
-(34, 299.9, 254.915, 'Jaqueta Bomber Vintage Grêmio Masculina', '../../img/produtoImg/Jaquetas/masculino/JaquetaBomberVintageGrêmioMasculinaprodutoImg.jpg', 'JaquetaBomberVintageGrêmioMasculinaprodutoImg.jpg', 2, 2, 0, 55, 15, 'Jaquetas Grêmio Preta Pretas', 1),
+(38, 279.9, 209.925, 'Jaqueta Trilobal Marinha Masculina', '../../img/produtoImg/Jaquetas/masculino/JaquetaTrilobalMarinhaMasculinaprodutoImg.jpg', 'JaquetaTrilobalMarinhaMasculinaprodutoImg.jpg', 4, 2, 0, 45, 25, 'Jaquetas Marinhas Grêmio', 1),
+(37, 315.9, 315.9, 'Jaqueta Estampada c/ Forro Preta Masculina', '../../img/produtoImg/Jaquetas/masculino/JaquetaEstampadacForroPretaMasculinaprodutoImg.jpg', 'JaquetaEstampadacForroPretaMasculinaprodutoImg.jpg', 4, 2, 0, 45, 0, 'Jaquetas Estampadas Pretas Grêmio', 1),
+(36, 299.9, 299.9, 'Jaqueta Moletom Details Masculina', '../../img/produtoImg/Jaquetas/masculino/JaquetaMoletomDetailsMasculinaprodutoImg.jpg', 'JaquetaMoletomDetailsMasculinaprodutoImg.jpg', 4, 2, 0, 45, 0, 'Jaquetas Preta Pretas Grêmio', 1),
+(35, 289.9, 289.9, 'Jaqueta Bomber Preta Grêmio Masculina', '../../img/produtoImg/Jaquetas/masculino/JaquetaBomberPretaGrêmioMasculinaprodutoImg.jpg', 'JaquetaBomberPretaGrêmioMasculinaprodutoImg.jpg', 4, 2, 0, 42, 0, 'Jaquetas Pretas ', 1),
+(34, 299.9, 254.915, 'Jaqueta Bomber Vintage Grêmio Masculina', '../../img/produtoImg/Jaquetas/masculino/JaquetaBomberVintageGrêmioMasculinaprodutoImg.jpg', 'JaquetaBomberVintageGrêmioMasculinaprodutoImg.jpg', 4, 2, 0, 55, 15, 'Jaquetas Grêmio Preta Pretas', 1),
 (7, 299.9, 269.91, 'Camiseta Retrô 1917 Masculina', '../../img/produtoImg/Camisetas/masculino/CamisetaRetrô1917MasculinaprodutoImg.jpg', 'CamisetaRetrô1917MasculinaprodutoImg.jpg', 1, 2, 0, 35, 10, 'Camisetas Branca Brancas Grêmio', 1),
 (6, 229.9, 206.91, 'Camiseta Retrô Mundial 1983 Masculina', '../../img/produtoImg/Camisetas/masculino/CamisetaRetrôMundial1983MasculinaprodutoImg.jpg', 'CamisetaRetrôMundial1983MasculinaprodutoImg.jpg', 1, 2, 0, 45, 10, 'Camisetas', 1),
 (5, 199.9, 169.915, 'Camiseta Retrô Tricolor Masculina', '../../img/produtoImg/Camisetas/masculino/CamisetaRetrôTricolorMasculinaprodutoImg.jpg', 'CamisetaRetrôTricolorMasculinaprodutoImg.jpg', 1, 2, 0, 65, 15, 'Camisetas', 1),

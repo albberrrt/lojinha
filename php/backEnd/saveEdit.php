@@ -173,16 +173,10 @@ if(isset($_GET['productId'])){
             }
         }
 
-        if(file_exists($target_file)){
-            echo "File já existe" . "<br></br>";
-            $uploadOk = 0;
-            header("Location: ../frontEnd/produtos.php?edit=true&productId=$productId&error=101");
-        }
-
         if($imgFileType != "jpg" && $imgFileType != "png" && $imgFileType != "jpeg" && $imgFileType != "webp"){
             echo "Sorry but only jpg, png, jpeg and webp are allowed" . "<br></br>";
             $uploadOk = 0;
-            header("Location: ../frontEnd/produtos.php?edit=true&productId=$productId&error=101");
+            header("Location: ../frontEnd/produtos.php?edit=true&productId=$productId&error=103");
         }
     } else {
 
