@@ -58,6 +58,27 @@ require_once '../backEnd/selectUsers.php';
     <?php if (isset($_SESSION['user_Name']) && isset($_SESSION['user_Email'])){ ?>
         <?php if ($_SESSION['isDev'] == 1){ ?>
 
+        <!-- ! EDITAR USUÁRIO EXISTENTE 💫💫💫💫💫💫💫💫💫💫💫💫💫💫💫 -->
+
+        <?php if (isset($_GET['edit']) && isset($_GET['userId'])){ ?>
+
+            <section class="boxSection">
+                <a href="../frontEnd/usuarios.php" class="backButtonLink">
+                <div class="backButton">
+                <svg class="arrowSvg" id="Camada_1" data-name="Camada 1" xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 1084 1920" preserveAspectRatio="xMidYMid meet"><path d="M1003.6389,908.1541,143.3872,47.9025a67.7444,67.7444,0,0,0-95.805,0l0,0a67.7443,67.7443,0,0,0,0,95.8049L863.9373,960.0627,47.5821,1776.4178a67.7444,67.7444,0,0,0,0,95.805l0,0a67.7442,67.7442,0,0,0,95.805,0l816.3552-816.3551.2576.2577,43.6389-43.6389A73.7742,73.7742,0,0,0,1003.6389,908.1541Z"/></svg>
+                <div>Voltar</div>
+                </div>
+                </a>
+                
+                <form action="../backEnd/userControl.php?userId=<?php echo $_GET['userId'] ?>" method="POST">
+                    
+                </form>
+
+            </section>
+            <a class="backLink" href="../frontEnd/produtos.php"></a>
+
+        <?php } ?>
+
         <?php if(isset($_GET['confirmExclusion']) && isset($_GET['userId'])){ ?>
         <?php if($_GET['confirmExclusion'] == true){ ?>
 
@@ -100,8 +121,8 @@ require_once '../backEnd/selectUsers.php';
                             <td><?php echo htmlspecialchars($row['userName']); ?></td>
                             <td><?php echo htmlspecialchars($row['userEmail']); ?></td>
                             <td><?php echo htmlspecialchars($row['dev']); ?></td>
-                            <td><a href="../frontEnd/usuarios.php?edit=true&userId=<?php echo $row['userId']; ?>"><div style="height:100%; display: flex; align-items: center;">Editar</div></a></td>
-                            <td><a href="../frontEnd/usuarios.php?confirmExclusion=true&userId=<?php echo $row['userId']; ?>"><div style="height:100%; display: flex; align-items: center;">Excluir</div></a></td>
+                            <td><a href="../frontEnd/usuarios.php?edit=true&userId=<?php echo $row['userId']; ?>"><div>Editar</div></a></td>
+                            <td><a href="../frontEnd/usuarios.php?confirmExclusion=true&userId=<?php echo $row['userId']; ?>"><div>Excluir</div></a></td>
                         </tr>
                     <?php endwhile; ?>
                 </tbody>

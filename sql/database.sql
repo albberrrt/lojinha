@@ -55,3 +55,5 @@ INSERT INTO `produtos` (`produtoId`, `produtoPrc`, `produtoPrcFinal`, `produtoNa
 (3, 199.9, 179.91, 'Camiseta Retrô Preta Masculina', '../../img/produtoImg/Camisetas/masculino/CamisetaRetrôPretaMasculinaprodutoImg.jpg', 'CamisetaRetrôPretaMasculinaprodutoImg.jpg', 1, 2, 0, 50, 10, 'Camisetas ', 1),
 (2, 119.9, 89.925, 'Camiseta Champion Masculina', '../../img/produtoImg/Camisetas/masculino/CamisetaChampionMasculinaprodutoImg.jpg', 'CamisetaChampionMasculinaprodutoImg.jpg', 1, 2, 0, 45, 25, 'Camisetas Preta', 1),
 (1, 179.9, 179.9, 'Camiseta Penta Campeão Gaúcho 2022 Masculina', '../../img/produtoImg/Camisetas/masculino/CamisetaPentaCampeãoGaúcho2022MasculinaprodutoImg..jpg', 'CamisetaPentaCampeãoGaúcho2022MasculinaprodutoImg..jpg', 1, 2, 0, 60, 0, 'Camiseta Camisetas Preta Pretas Grêmio', 1);
+
+-- http://www.codingcage.com/2015/04/php-login-and-registration-script-with.html
